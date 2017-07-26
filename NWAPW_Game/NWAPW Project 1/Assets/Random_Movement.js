@@ -17,6 +17,7 @@ var dirControlX : float = 0.0;
 var runCounter : float = 0;
 var counterCycles : float = 0;
 var runNewCount : boolean = false;
+var inDoorway : boolean;
 
 
 function randomizeTranslate () {
@@ -83,6 +84,11 @@ function randomizeTranslate () {
 function Update () {
 
 	randomizeTranslate();
+	//Collider2D.OnTriggerEnter2D(Collider2D);
+
+	if(inDoorway){
+		transform.Translate(0,-5,0);
+	}
 
 	// Make it move 10 meters per second instead of 10 meters per frame...
 	if(runNewCount){
