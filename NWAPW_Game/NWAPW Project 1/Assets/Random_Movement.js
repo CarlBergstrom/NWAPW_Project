@@ -12,11 +12,12 @@ var isForwardX : boolean = true;
 var isStopX : boolean = false;
 var translationY : float = 0.0;
 var translationX : float = 0.0;
-var dirControlY : float = Random.Range(-1,1);
-var dirControlX : float = Random.Range(-1,1);
+var dirControlY : float = 0.0;
+var dirControlX : float = 0.0;
 var runCounter : float = 0;
 var counterCycles : float = 0;
 var runNewCount : boolean = false;
+
 
 function randomizeTranslate () {
 	//Randomize Y axis movement

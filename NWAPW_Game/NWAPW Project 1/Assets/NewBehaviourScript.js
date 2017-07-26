@@ -21,9 +21,5 @@ function Update () {
 	// Rotate around our y-axis
 	transform.Translate (translationX, 0, 0);
 
-	//Keep the character orientated upwards
-
-
-	transform.Rotate(0,0,2);
 }
 
