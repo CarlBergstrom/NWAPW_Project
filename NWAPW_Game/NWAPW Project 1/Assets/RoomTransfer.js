@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var inDoorway : boolean;
+public var inDoorway : boolean;
 
 function OnTriggerEnter2D(other: Collider2D){
 	inDoorway = true;
