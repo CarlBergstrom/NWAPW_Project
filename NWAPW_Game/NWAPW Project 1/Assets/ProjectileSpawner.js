@@ -4,14 +4,22 @@ var isLeft : boolean = true;
 var FireballSpawner : GameObject;
 var Character : GameObject = FireballSpawner.transform.parent.gameObject;
 var hitTarget : LayerMask;
-var curPos : Vector2;
-public var FireBallLeftPrefab : Transform;
-public var FireBallRightPrefab : Transform;
-public var Enemy1 : Transform;
-public var Enemy2 : Transform;
+static var curPos : Vector2;
+var FireBallLeftPrefab : Transform;
+var FireBallRightPrefab : Transform;
+var Enemy1 : Transform;
+var Enemy2 : Transform;
 var spawnEnemy1 : boolean = true;
 var spawnRandomPos : Vector2;
 var spawnDetermine : float;
+static var roomOneSpawnMaxX : float = 6;
+static var roomOneSpawnMinX : float = -6;
+static var roomOneSpawnMaxY : float = 2;
+static var roomOneSpawnMinY : float = -2.5;
+static var roomTwoSpawnMaxX : float = 7;
+static var roomTwoSpawnMinX : float = -6.5;
+static var roomTwoSpawnMaxY : float = 12.5;
+static var roomTwoSpawnMinY : float = 6.5;
 
 function Start () {
 	
@@ -75,9 +83,15 @@ function chooseSpawnRandom(){
 	else{
 		spawnEnemy1 = false;
 	}
+	if(CharacterMovement.curRoom == 1){
+		spawnRandomPos[0] = Random.Range(roomOneSpawnMinX,roomOneSpawnMaxX);
+		spawnRandomPos[1] = Random.Range(roomOneSpawnMinY,roomOneSpawnMaxY);
+	}
+	else if(CharacterMovement.curRoom == 2){
+		spawnRandomPos[0] = Random.Range(roomTwoSpawnMinX,roomTwoSpawnMaxX);
+		spawnRandomPos[1] = Random.Range(roomTwoSpawnMinY,roomTwoSpawnMaxY);
+	}
 
-	spawnRandomPos[0] = Random.Range(-6,6);
-	spawnRandomPos[1] = Random.Range(-2.5,2);
 }
 
 function spawnInRandomPos(){

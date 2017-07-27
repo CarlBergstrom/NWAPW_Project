@@ -1,10 +1,10 @@
 ﻿#pragma strict
 
-static var isGoingUp : boolean;
+static var isGoingDown : boolean;
 
 function OnTriggerEnter2D(other: Collider2D){
-	isGoingUp = true;
+	isGoingDown = true;
 }
 function OnTriggerExit2D(other : Collider2D){
-	isGoingUp = false;
+	isGoingDown = false;
 }
