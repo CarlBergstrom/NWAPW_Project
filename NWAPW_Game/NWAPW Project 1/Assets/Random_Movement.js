@@ -17,7 +17,9 @@ var dirControlX : float = 0.0;
 var runCounter : float = 0;
 var counterCycles : float = 0;
 var runNewCount : boolean = false;
-var inDoorway : boolean;
+var newPosition : Vector2;
+var currentPosition : Vector2;
+var toTranslate : Vector2;
 
 
 function randomizeTranslate () {
@@ -84,22 +86,18 @@ function randomizeTranslate () {
 function Update () {
 
 	randomizeTranslate();
+	currentPosition[0] = transform.position.x;
+	currentPosition[1] = transform.position.y;
 	//Collider2D.OnTriggerEnter2D(Collider2D);
-
-	if(inDoorway){
-		transform.Translate(0,-5,0);
-	}
 
 	// Make it move 10 meters per second instead of 10 meters per frame...
 	if(runNewCount){
 	    translationY *= Time.deltaTime;
 		translationX *= Time.deltaTime;
-	}
-  
-	    // Move translation along the object's z-axis
-	    transform.Translate (0, translationY, 0);
-	    // Rotate around our y-axis
-	    transform.Translate (translationX, 0, 0);
+		toTranslate[0] = translationX;
+		toTranslate[1] = translationY;
+	}  
+	newPosition = currentPosition + toTranslate;
 
-		
+	transform.position = newPosition;
 }

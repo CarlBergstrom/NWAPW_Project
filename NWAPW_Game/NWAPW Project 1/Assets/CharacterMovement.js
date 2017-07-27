@@ -1,12 +1,14 @@
 ﻿#pragma strict
 
 
-var speedY : float = 0.05;
-var speedX : float = 0.05;
+var speedY : float = 0.5;
+var speedX : float = 0.5;
 var Character : Transform;
 var EnemyWallOne : Transform;
 var EnemyWallTwo : Transform;
 static var curRoom : int = 1;
+var translationY : float;
+var translationX : float;
 
 
 function Start(){
@@ -19,8 +21,8 @@ function Update () {
     // By default they are mapped to the arrow keys.
     // The value is in the range -1 to 1
 
-    var translationY : float = Input.GetAxis ("Vertical") * speedY;
-    var translationX : float = Input.GetAxis ("Horizontal") * speedX;
+    translationY = Input.GetAxis ("Vertical") * speedY;
+    translationX = Input.GetAxis ("Horizontal") * speedX;
 
     // Make it move 10 meters per second instead of 10 meters per frame...
     translationY *= Time.deltaTime;
@@ -31,13 +33,13 @@ function Update () {
 	// Rotate around our y-axis
 	transform.Translate (translationX, 0, 0);
 	if(RoomTransfer.isGoingUp){
-		transform.Translate(0, 4.3, 0);
+		transform.Translate(0, 3, 0);
 		curRoom = 2;
 	}
 	else if(RoomTransferDown.isGoingDown){
-		transform.Translate(0, -4.3, 0);
+		transform.Translate(0, -3, 0);
 		curRoom = 1;
 	}
-
+	Debug.Log("Currently in room " + curRoom);
 }
 
