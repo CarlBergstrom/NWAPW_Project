@@ -21,6 +21,9 @@ var newPosition : Vector2;
 var currentPosition : Vector2;
 var toTranslate : Vector2;
 var Treasure1Prefab : Transform;
+var Upgrade1Prefab : Transform;
+var isGoingX : boolean = true;
+var determineXorY : float = 0;
 
 
 function OnApplicationQuit(){
@@ -29,7 +32,12 @@ function OnApplicationQuit(){
 
 function OnDestroy(){
 	if(ProjectileSpawner.enemyShouldDrop){
-		Instantiate(Treasure1Prefab, transform.position, Quaternion.identity);
+		if(Random.Range(-1,10) < 0){
+			Instantiate(Upgrade1Prefab, transform.position, Quaternion.identity);
+		}
+		else{
+			Instantiate(Treasure1Prefab, transform.position, Quaternion.identity);
+		}
 	}
 }
 
@@ -103,10 +111,23 @@ function Update () {
 
 	// Make it move 10 meters per second instead of 10 meters per frame...
 	if(runNewCount){
+		determineXorY = Random.Range(-0.9,0.9);
+		if(determineXorY < 0){
+			isGoingX = false;
+		}
+		else{
+			isGoingX = true;
+		}
 	    translationY *= Time.deltaTime;
 		translationX *= Time.deltaTime;
-		toTranslate[0] = translationX;
-		toTranslate[1] = translationY;
+		if(isGoingX){
+			toTranslate[0] = translationX;
+			toTranslate[1] = 0;
+		}
+		else{
+			toTranslate[0] = 0;
+			toTranslate[1] = translationY;
+		}
 	}  
 	newPosition = currentPosition + toTranslate;
 

@@ -9,116 +9,71 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1162028321900726}
+  m_RootGameObject: {fileID: 1441750016254956}
   m_IsPrefabParent: 1
---- !u!1 &1162028321900726
+--- !u!1 &1441750016254956
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4787568082539282}
-  - component: {fileID: 212051446300630794}
-  - component: {fileID: 58457260487985236}
-  - component: {fileID: 114691057322208008}
-  - component: {fileID: 50367554867096490}
-  m_Layer: 9
-  m_Name: EnemyNoRespawn
+  - component: {fileID: 4982070976478446}
+  - component: {fileID: 58185644454617562}
+  - component: {fileID: 212595419209367942}
+  - component: {fileID: 114762846712679654}
+  m_Layer: 11
+  m_Name: Upgrade
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4787568082539282
+--- !u!4 &4982070976478446
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162028321900726}
+  m_GameObject: {fileID: 1441750016254956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 0.61, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: -1.08435, y: 0.09512254, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50367554867096490
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162028321900726}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &58457260487985236
+--- !u!58 &58185644454617562
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162028321900726}
+  m_GameObject: {fileID: 1441750016254956}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &114691057322208008
+--- !u!114 &114762846712679654
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162028321900726}
+  m_GameObject: {fileID: 1441750016254956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683547ef20671f64f88d84dcfb1e1869, type: 3}
+  m_Script: {fileID: 11500000, guid: 78369ace3cb8d214ba7212033c555921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedY: 0.05
-  speedX: 0.05
-  speedMaxPos: 7
-  speedMinPos: 4
-  speedMaxNeg: -7
-  speedMinNeg: -4
-  isForwardY: 1
-  isStopY: 0
-  isForwardX: 1
-  isStopX: 0
-  translationY: 0
-  translationX: 0
-  dirControlY: 0
-  dirControlX: 0
-  runCounter: 0
-  counterCycles: 0
-  runNewCount: 0
-  newPosition: {x: 0, y: 0}
-  currentPosition: {x: 0, y: 0}
-  toTranslate: {x: 0, y: 0}
-  Treasure1Prefab: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
-    type: 2}
-  Upgrade1Prefab: {fileID: 4982070976478446, guid: 1f06238100203664d842185ac31ae82a,
-    type: 2}
---- !u!212 &212051446300630794
+--- !u!212 &212595419209367942
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162028321900726}
+  m_GameObject: {fileID: 1441750016254956}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -145,8 +100,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca998dcb9481b744b855d405f96c82f4, type: 3}
-  m_Color: {r: 1, g: 0.63235295, b: 0.63235295, a: 1}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0.007352948, g: 1, b: 0.4660244, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

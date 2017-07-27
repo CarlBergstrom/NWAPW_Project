@@ -1,8 +1,8 @@
 ﻿#pragma strict
 
 
-var speedY : float = 0.5;
-var speedX : float = 0.5;
+var speedY : float = 5;
+var speedX : float = 5;
 var Character : Transform;
 var EnemyWallOne : Transform;
 var EnemyWallTwo : Transform;
@@ -10,6 +10,7 @@ var SecretEnemyWall : Transform;
 static var curRoom : int = 1;
 var translationY : float;
 var translationX : float;
+var speedTimer : int = 0;
 
 
 function Start(){
@@ -22,6 +23,18 @@ function Update () {
     // Get the horizontal and vertical axis.
     // By default they are mapped to the arrow keys.
     // The value is in the range -1 to 1
+
+	if(UpgradePickup.playerHasUpgradeGreen && speedTimer < 120){
+		speedX = 10;
+		speedY = 10;
+		speedTimer += 1;
+	}
+	else if(speedTimer >= 120){
+		UpgradePickup.playerHasUpgradeGreen = false;
+		speedX = 5;
+		speedY = 5;
+		speedTimer = 0;
+	}
 
     translationY = Input.GetAxis ("Vertical") * speedY;
     translationX = Input.GetAxis ("Horizontal") * speedX;

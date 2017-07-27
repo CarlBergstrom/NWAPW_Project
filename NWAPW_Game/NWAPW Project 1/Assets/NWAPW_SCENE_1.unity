@@ -287,19 +287,6 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4125560719269588, guid: f92a4788163d5564f87f310df10e3856, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125560719269588, guid: f92a4788163d5564f87f310df10e3856, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 58101906913995570, guid: f92a4788163d5564f87f310df10e3856,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f92a4788163d5564f87f310df10e3856, type: 2}
   m_IsPrefabParent: 0
@@ -730,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4af1f717936eb4a9ad072f694e71bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Treasure1Prefab: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
+  Treasure1Prefab: {fileID: 4982070976478446, guid: 1f06238100203664d842185ac31ae82a,
     type: 2}
 --- !u!1 &982963603
 GameObject:
@@ -967,6 +954,8 @@ MonoBehaviour:
   currentPosition: {x: 0, y: 0}
   toTranslate: {x: 0, y: 0}
   Treasure1Prefab: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
+    type: 2}
+  Upgrade1Prefab: {fileID: 4982070976478446, guid: 1f06238100203664d842185ac31ae82a,
     type: 2}
 --- !u!58 &1181453714
 CircleCollider2D:
@@ -1489,6 +1478,8 @@ MonoBehaviour:
   toTranslate: {x: 0, y: 0}
   Treasure1Prefab: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
     type: 2}
+  Upgrade1Prefab: {fileID: 4982070976478446, guid: 1f06238100203664d842185ac31ae82a,
+    type: 2}
 --- !u!212 &2011807756
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1619,6 +1610,7 @@ MonoBehaviour:
   SecretEnemyWall: {fileID: 885078539}
   translationY: 0
   translationX: 0
+  speedTimer: 0
 --- !u!212 &2066328013
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217571876086448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.77, y: 1.83, z: 0}
+  m_LocalPosition: {x: -2.5774095, y: 8.940503, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,6 +110,8 @@ MonoBehaviour:
   currentPosition: {x: 0, y: 0}
   toTranslate: {x: 0, y: 0}
   Treasure1Prefab: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
+    type: 2}
+  Upgrade1Prefab: {fileID: 4982070976478446, guid: 1f06238100203664d842185ac31ae82a,
     type: 2}
 --- !u!212 &212652034642466522
 SpriteRenderer:
