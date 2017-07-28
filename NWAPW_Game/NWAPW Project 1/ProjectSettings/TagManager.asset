@@ -17,10 +17,10 @@ TagManager:
   - Enemy
   - Object(Destructable)
   - Pickups
-  - 
-  - 
-  - 
-  - 
+  - EnemyWalls
+  - FireWalls
+  - Attack
+  - RoomTransfer
   - 
   - 
   - 

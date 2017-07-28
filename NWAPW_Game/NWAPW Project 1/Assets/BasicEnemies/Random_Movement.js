@@ -16,7 +16,7 @@ var dirControlY : float = 0.0;
 var dirControlX : float = 0.0;
 var runCounter : float = 0;
 var counterCycles : float = 0;
-var runNewCount : boolean = false;
+static var runNewCount : boolean = false;
 var newPosition : Vector2;
 var currentPosition : Vector2;
 var toTranslate : Vector2;

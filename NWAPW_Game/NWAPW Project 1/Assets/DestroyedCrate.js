@@ -2,6 +2,12 @@
 
 var Treasure1Prefab : Transform;
 
+function OnApplicationQuit(){
+	ProjectileSpawner.enemyShouldDrop = false;
+}
+
 function OnDestroy(){
-	Instantiate(Treasure1Prefab, transform.position, Quaternion.identity);
+	if(ProjectileSpawner.enemyShouldDrop){
+		Instantiate(Treasure1Prefab, transform.position, Quaternion.identity);
+	}
 }

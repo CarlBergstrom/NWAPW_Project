@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4436870675609060}
   - component: {fileID: 212771238330444820}
   - component: {fileID: 114613443478368710}
-  m_Layer: 0
+  - component: {fileID: 58992562327528050}
+  m_Layer: 14
   m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,6 +42,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58992562327528050
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1746399076859546}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.16
 --- !u!114 &114613443478368710
 MonoBehaviour:
   m_ObjectHideFlags: 1
