@@ -13,7 +13,11 @@ function Start(){
 function Update () {
 	if(DeleteFireBall.fireballPassed){
 		DeleteFireBall.fireballPassed = false;
-		Destroy(gameObject,0.0);
+		Destroy(this.gameObject);
+	}
+	if(Random_Movement.enemyHit){
+		Random_Movement.enemyHit = false;
+		Destroy(this.gameObject);
 	}
 	transform.Translate(Vector3.right* Time.deltaTime * moveSpeed);
 	Destroy (gameObject, 0.5);

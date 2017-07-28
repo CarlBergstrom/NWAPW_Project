@@ -19,9 +19,9 @@ TagManager:
   - Pickups
   - EnemyWalls
   - FireWalls
-  - Attack
+  - PlayerAttacks
   - RoomTransfer
-  - 
+  - EnemyAttacks
   - 
   - 
   - 

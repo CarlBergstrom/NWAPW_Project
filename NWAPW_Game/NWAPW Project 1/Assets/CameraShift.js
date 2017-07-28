@@ -4,6 +4,8 @@ var roomOnePosition : Vector3;
 var roomTwoPosition : Vector3;
 var roomThreePosition : Vector3;
 var gameOverScreen : Vector3;
+var gameStartScreen : Vector3;
+static var gameHasStarted : boolean = false;
 
 
 function Start () {
@@ -19,15 +21,27 @@ function Start () {
 	gameOverScreen[0] = 0;
 	gameOverScreen[1] = -20;
 	gameOverScreen[2] = -10;
+	gameStartScreen[0] = 0;
+	gameStartScreen[1] = -30;
+	gameStartScreen[2] = -10;
 }
 
 function Update () {
+	if(!gameHasStarted){
+		if(Input.GetKeyDown("space")){
+			transform.position = roomOnePosition;
+			gameHasStarted = true;
+		}
+	}
+
 	if(CharacterMovement.playerOutOfLives){
 		transform.position = gameOverScreen;
+		gameHasStarted = false;
 	}
 	else if(CharacterMovement.playerHasDied){
 		transform.position = roomOnePosition;
 	}
+
 	if(RoomTransfer.isGoingUp && CharacterMovement.curRoom == 1){
 		transform.position = roomTwoPosition;
 	}

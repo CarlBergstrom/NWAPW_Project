@@ -21,7 +21,7 @@ static var roomTwoSpawnMaxX : float = 7;
 static var roomTwoSpawnMinX : float = -6.5;
 static var roomTwoSpawnMaxY : float = 12.5;
 static var roomTwoSpawnMinY : float = 6.5;
-var shouldRespawn : boolean = true; //Eventually make static, for now still working on it
+var shouldRespawn : boolean = true; //For enemies, not player
 static var enemyShouldDrop : boolean = true;
 
 
@@ -37,11 +37,13 @@ function UpdateCurPos(){
 }
 
 function Update () {
-	UpdateCurPos();
+	if(CameraShift.gameHasStarted){
+		UpdateCurPos();
 
 
-	if(Input.GetButtonDown("Fire1")){
-		shoot();
+		if(Input.GetButtonDown("Fire1")){
+			shoot();
+		}
 	}
 }
 
@@ -52,8 +54,9 @@ function shoot(){
 		Effect(isLeft);
 		if(hitLeft.collider != null){
 			//Debug.DrawLine (curPos, hitLeft.point);
-			Destroy (hitLeft.transform.gameObject, 0.1);
-			spawnInRandomPos();
+			if(Random_Movement.enemyHasDied){
+				spawnInRandomPos();
+			}
 		}
 		else if(hitTreasureLeft.collider != null){
 			Destroy (hitTreasureLeft.transform.gameObject, 0.1);
@@ -65,8 +68,7 @@ function shoot(){
 		Effect(isLeft);
 		if(hitRight.collider != null){
 			//Debug.DrawLine (curPos, hitRight.point);
-			Destroy (hitRight.transform.gameObject, 0.1);
-			if(shouldRespawn){
+			if(Random_Movement.enemyHasDied){
 				spawnInRandomPos();
 			}
 		}
@@ -112,4 +114,5 @@ function spawnInRandomPos(){
 	else{
 		Instantiate (Enemy2, spawnRandomPos, Quaternion.identity);
 	}
+	Random_Movement.enemyHasDied = false;
 }

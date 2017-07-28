@@ -24,10 +24,23 @@ var Treasure1Prefab : Transform;
 var Upgrade1Prefab : Transform;
 var isGoingX : boolean = true;
 var determineXorY : float = 0;
+static var enemyIsAttacking : boolean = true; //Start as false once attack animation can be added
+var shouldAttack : boolean = true; //Start as false once attack animation can be added
+var gooAttackPrefab : Transform;
+var enemyHealth : int = 2;
+static var enemyHit : boolean = false;
+static var enemyHasDied : boolean = false;
 
 
 function OnApplicationQuit(){
 	ProjectileSpawner.enemyShouldDrop = false;
+}
+
+function UpdateHealth(){
+	if(enemyHealth == 0){
+		enemyHasDied = true;
+		Destroy(this.gameObject);
+	}
 }
 
 function OnDestroy(){
@@ -38,6 +51,13 @@ function OnDestroy(){
 		else{
 			Instantiate(Treasure1Prefab, transform.position, Quaternion.identity);
 		}
+	}
+}
+
+function OnCollisionEnter2D(coll:Collision2D){
+	if(coll.gameObject.layer == 14){
+		enemyHit = false;
+		enemyHealth -= 1;
 	}
 }
 
@@ -98,38 +118,50 @@ function randomizeTranslate () {
 			translationX = Random.Range(speedMinNeg, speedMaxNeg) * speedX;
 		}
 	}
-	runCounter += 1;
-	
+	runCounter += 1;	
+}
+
+function deployAttack(){
+	Instantiate(gooAttackPrefab, transform.position, Quaternion.identity);
+}
+
+function randomizeAttack(){
+	if((Random.Range(-1,10)) <= 0){
+		deployAttack();
+	}
 }
 
 function Update () {
+	if(CameraShift.gameHasStarted){
+		UpdateHealth();
+		randomizeTranslate();
+		currentPosition[0] = transform.position.x;
+		currentPosition[1] = transform.position.y;
+		//Collider2D.OnTriggerEnter2D(Collider2D);
 
-	randomizeTranslate();
-	currentPosition[0] = transform.position.x;
-	currentPosition[1] = transform.position.y;
-	//Collider2D.OnTriggerEnter2D(Collider2D);
+		// Make it move 10 meters per second instead of 10 meters per frame...
+		if(runNewCount){
+			determineXorY = Random.Range(-0.9,0.9);
+			if(determineXorY < 0){
+				isGoingX = false;
+			}
+			else{
+				isGoingX = true;
+			}
+			translationY *= Time.deltaTime;
+			translationX *= Time.deltaTime;
+			if(isGoingX){
+				toTranslate[0] = translationX;
+				toTranslate[1] = 0;
+			}
+			else{
+				toTranslate[0] = 0;
+				toTranslate[1] = translationY;
+			}
+			randomizeAttack();
+		}  
+		newPosition = currentPosition + toTranslate;
 
-	// Make it move 10 meters per second instead of 10 meters per frame...
-	if(runNewCount){
-		determineXorY = Random.Range(-0.9,0.9);
-		if(determineXorY < 0){
-			isGoingX = false;
-		}
-		else{
-			isGoingX = true;
-		}
-	    translationY *= Time.deltaTime;
-		translationX *= Time.deltaTime;
-		if(isGoingX){
-			toTranslate[0] = translationX;
-			toTranslate[1] = 0;
-		}
-		else{
-			toTranslate[0] = 0;
-			toTranslate[1] = translationY;
-		}
-	}  
-	newPosition = currentPosition + toTranslate;
-
-	transform.position = newPosition;
+		transform.position = newPosition;
+	}
 }

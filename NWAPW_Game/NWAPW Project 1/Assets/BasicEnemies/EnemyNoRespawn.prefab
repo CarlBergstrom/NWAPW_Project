@@ -105,13 +105,17 @@ MonoBehaviour:
   dirControlX: 0
   runCounter: 0
   counterCycles: 0
-  runNewCount: 0
   newPosition: {x: 0, y: 0}
   currentPosition: {x: 0, y: 0}
   toTranslate: {x: 0, y: 0}
   Treasure1Prefab: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
     type: 2}
   Upgrade1Prefab: {fileID: 4982070976478446, guid: 1f06238100203664d842185ac31ae82a,
+    type: 2}
+  isGoingX: 1
+  determineXorY: 0
+  shouldAttack: 0
+  gooAttackPrefab: {fileID: 4446153787298832, guid: b475f04b51c8a0e4aafcab740b107e16,
     type: 2}
 --- !u!212 &212051446300630794
 SpriteRenderer:

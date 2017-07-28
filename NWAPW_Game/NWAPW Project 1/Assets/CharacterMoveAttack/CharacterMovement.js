@@ -33,10 +33,16 @@ function Start(){
 
 function OnCollisionEnter2D(coll: Collision2D){
 	if (coll.gameObject.layer == 9){
-		hasTakenDamage = true;
-		playerHealth -= 10;
-		Debug.Log("Player Health is currently: " + playerHealth + " And the player has " + playerLives + " Lives");
+		if(Random_Movement.enemyIsAttacking){
+			hasTakenDamage = true;
+			playerHealth -= 10;
+			Debug.Log("Player Health is currently: " + playerHealth + " And the player has " + playerLives + " Lives");
+		}
+		else{
+			//Enemy and player bump away from each other, possibly change
+		}
 	}
+
 }
 
 function UpdateHealth(){
@@ -81,29 +87,32 @@ function Update () {
     // Get the horizontal and vertical axis.
     // By default they are mapped to the arrow keys.
     // The value is in the range -1 to 1
-	if(!playerOutOfLives){
-		UpdatePickups();
 
-		translationY = Input.GetAxis ("Vertical") * speedY;
-		translationX = Input.GetAxis ("Horizontal") * speedX;
+	if(CameraShift.gameHasStarted){
+		if(!playerOutOfLives){
+			UpdatePickups();
+
+			translationY = Input.GetAxis ("Vertical") * speedY;
+			translationX = Input.GetAxis ("Horizontal") * speedX;
 
 
-		UpdateHealth();
+			UpdateHealth();
 
-		// Make it move 10 meters per second instead of 10 meters per frame...
-		translationY *= Time.deltaTime;
-		translationX *= Time.deltaTime;
+			// Make it move 10 meters per second instead of 10 meters per frame...
+			translationY *= Time.deltaTime;
+			translationX *= Time.deltaTime;
 
-		//Translate each axis
-		transform.Translate (0, translationY, 0);
-		transform.Translate (translationX, 0, 0);
+			//Translate each axis
+			transform.Translate (0, translationY, 0);
+			transform.Translate (translationX, 0, 0);
 
-		UpdateRoom();
+			UpdateRoom();
 	
-		//Debug log for testing static  variables that cannot be easily seen
-		if(false){
-			//Debug.Log("Currently in room " + curRoom);
-			Debug.Log("Player Health is currently: " + playerHealth);
+			//Debug log for testing static  variables that cannot be easily seen
+			if(false){
+				//Debug.Log("Currently in room " + curRoom);
+				Debug.Log("Player Health is currently: " + playerHealth);
+			}
 		}
 	}
 }
