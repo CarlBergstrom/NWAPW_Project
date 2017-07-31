@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4807060618141786}
   - component: {fileID: 212570912580460198}
   - component: {fileID: 95096254891269848}
-  - component: {fileID: 114643502276468348}
+  - component: {fileID: 114478454076788382}
   - component: {fileID: 61580455110819110}
   m_Layer: 0
   m_Name: New Sprite
@@ -65,8 +65,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1547109722240454}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.374, y: -0.024, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.442712, y: 0.9307585, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4045210674670250}
   m_Father: {fileID: 0}
@@ -114,7 +114,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114643502276468348
+--- !u!114 &114478454076788382
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,12 +122,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1547109722240454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64637aa4653f0fe44a43deb9d97f90c5, type: 3}
+  m_Script: {fileID: 11500000, guid: f0d5fb060725d2549be532453672c40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  mrange: 1
-  meleePoint: {fileID: 4045210674670250}
+  damage: 0
+  mrange: 0
+  meleePoint: {fileID: 0}
 --- !u!212 &212570912580460198
 SpriteRenderer:
   m_ObjectHideFlags: 1

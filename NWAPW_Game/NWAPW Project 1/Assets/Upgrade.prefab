@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4982070976478446}
   - component: {fileID: 58185644454617562}
   - component: {fileID: 212595419209367942}
-  - component: {fileID: 114762846712679654}
+  - component: {fileID: 114613226252592294}
   m_Layer: 11
   m_Name: Upgrade
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1441750016254956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.08435, y: 0.09512254, z: 0}
+  m_LocalPosition: {x: 2.212761, y: -0.08084607, z: -1}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &114762846712679654
+--- !u!114 &114613226252592294
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1441750016254956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78369ace3cb8d214ba7212033c555921, type: 3}
+  m_Script: {fileID: 11500000, guid: 83c85946c5e79ea4aabdd738b8d2ee23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212595419209367942
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.007352948, g: 1, b: 0.4660244, a: 1}
+  m_Color: {r: 0.102184236, g: 0.99264705, b: 0.3662525, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

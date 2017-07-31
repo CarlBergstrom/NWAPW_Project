@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4787568082539282}
   - component: {fileID: 212051446300630794}
   - component: {fileID: 58457260487985236}
-  - component: {fileID: 114691057322208008}
   - component: {fileID: 50367554867096490}
+  - component: {fileID: 114679711387871926}
   m_Layer: 9
   m_Name: EnemyNoRespawn
   m_TagString: Untagged
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &114691057322208008
+--- !u!114 &114679711387871926
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,37 +86,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162028321900726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683547ef20671f64f88d84dcfb1e1869, type: 3}
+  m_Script: {fileID: 11500000, guid: dad29dfc8d3b84e4b887d38ced81c780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedY: 0.05
-  speedX: 0.05
-  speedMaxPos: 7
-  speedMinPos: 4
-  speedMaxNeg: -7
-  speedMinNeg: -4
-  isForwardY: 1
-  isStopY: 0
-  isForwardX: 1
-  isStopX: 0
-  translationY: 0
-  translationX: 0
-  dirControlY: 0
-  dirControlX: 0
-  runCounter: 0
-  counterCycles: 0
-  newPosition: {x: 0, y: 0}
-  currentPosition: {x: 0, y: 0}
-  toTranslate: {x: 0, y: 0}
-  Treasure1Prefab: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
-    type: 2}
-  Upgrade1Prefab: {fileID: 4982070976478446, guid: 1f06238100203664d842185ac31ae82a,
-    type: 2}
-  isGoingX: 1
-  determineXorY: 0
-  shouldAttack: 0
-  gooAttackPrefab: {fileID: 4446153787298832, guid: b475f04b51c8a0e4aafcab740b107e16,
-    type: 2}
 --- !u!212 &212051446300630794
 SpriteRenderer:
   m_ObjectHideFlags: 1
