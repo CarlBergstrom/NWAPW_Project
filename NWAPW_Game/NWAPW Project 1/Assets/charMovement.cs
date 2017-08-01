@@ -11,6 +11,7 @@ public class charMovement : MonoBehaviour
     public int damage = 1;
     public float mrange = 1;
     public Transform meleePoint;
+	public Transform hp_follow;
 	bool atkRecharge = false;
 	int RechargeTime = 0;
     public static bool hasSword = false; //WIP
@@ -26,7 +27,7 @@ public class charMovement : MonoBehaviour
     int SpeedDuration = 120;
 
     //Variables controlling Health and Death
-    public static int playerHealth = 100;
+	public static int playerHealth = 10;
     public static int playerLives = 3;
     public static bool playerHasDied = false;
     public static bool playerOutOfLives = false;
@@ -34,7 +35,7 @@ public class charMovement : MonoBehaviour
     public static bool playerHasTakenDamage = false;
     public static Vector2 respawnLocation;
     int stunCounter = 0;
-    bool isStunned;
+    bool isStunned = false;
 
     // Use this for initialization
     void Start()
@@ -42,6 +43,7 @@ public class charMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         Physics2D.IgnoreLayerCollision(8, 12, true);
         Physics2D.IgnoreLayerCollision(8, 13, true);
+		Physics2D.IgnoreLayerCollision (8, 14, true);
         respawnLocation[0] = transform.position.x;
         respawnLocation[1] = transform.position.y;
         PlayerPos[0] = transform.position.x;
@@ -50,13 +52,52 @@ public class charMovement : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+	void takedamageP(int Edamage)
     {
-        if (collision.gameObject.layer == 9)
-        {
-            playerHealth -= 10;
-            playerHasTakenDamage = true;
-        }
+  	    playerHealth -= Edamage;
+    	playerHasTakenDamage = true;
+		int hpLowerBy = Edamage;
+		Collider2D[] hpSense = Physics2D.OverlapCircleAll(hp_follow.position, 0f);
+		if (Edamage == 1) 
+		{
+			Debug.Log ("message to HP sent");
+			hpSense[0].SendMessage ("hpDown1", SendMessageOptions.DontRequireReceiver);
+		}
+		if (Edamage == 2) 
+		{
+			hpSense[0].SendMessage ("hpDown2", SendMessageOptions.DontRequireReceiver);		}
+		if (Edamage == 3) 
+		{
+			hpSense[0].SendMessage ("hpDown3", SendMessageOptions.DontRequireReceiver);
+		}
+		if (Edamage == 4) 
+		{
+			hpSense[0].SendMessage ("hpDown4", SendMessageOptions.DontRequireReceiver);
+		}
+		if (Edamage == 5) 
+		{
+			hpSense[0].SendMessage ("hpDown5", SendMessageOptions.DontRequireReceiver);
+		}
+		if (Edamage == 6) 
+		{
+			hpSense[0].SendMessage ("hpDown6", SendMessageOptions.DontRequireReceiver);
+		}
+		if (Edamage == 7) 
+		{
+			hpSense[0].SendMessage ("hpDown7", SendMessageOptions.DontRequireReceiver);
+		}
+		if (Edamage == 8) 
+		{
+			hpSense[0].SendMessage ("hpDown8", SendMessageOptions.DontRequireReceiver);
+		}
+		if (Edamage == 9) 
+		{
+			hpSense[0].SendMessage ("hpDown9", SendMessageOptions.DontRequireReceiver);
+		}
+		if (Edamage == 10) 
+		{
+			hpSense[0].SendMessage ("hpDown10", SendMessageOptions.DontRequireReceiver);
+		}
     }
 
     void UpdateCollisions()
@@ -138,11 +179,47 @@ public class charMovement : MonoBehaviour
     {
         if (CameraRoomFollow.gameHasStarted)
         {
-            float horiz = Input.GetAxisRaw("Horizontal");
-            float vert = Input.GetAxisRaw("Vertical");
-            bool walk = (Mathf.Abs(horiz) + Mathf.Abs(vert)) > 0;
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+			bool walk = (Mathf.Abs(horizontal) + Mathf.Abs(vertical)) > 0;
             UpdateCollisions();
             UpdatePos();
+
+			if (walk)
+			{
+				anim.SetBool("walk", true);
+			}
+
+			if (!walk)
+			{
+				anim.SetBool("walk", false);
+			}
+
+			// right
+			if (horizontal > 0.01)
+			{
+				transform.rotation = Quaternion.Euler(0, 0, 90);
+			}
+
+			// left
+			if (horizontal < -0.01)
+			{
+				transform.rotation = Quaternion.Euler(0, 0, 270);
+			}
+
+			// up
+			if (vertical > 0.01)
+			{
+				transform.rotation = Quaternion.Euler(0, 0, 180);
+			}
+
+			// down
+			if (vertical < -0.01)
+			{
+				transform.rotation = Quaternion.Euler(0, 0, 0);
+			}
+
+			transform.Translate(horizontal * Time.deltaTime * speed, vertical * Time.deltaTime * speed, 0, Space.World);
 
             if (Input.GetButton("stab")) //Implement hasSword later
             {
@@ -157,7 +234,7 @@ public class charMovement : MonoBehaviour
 
                     if (hitObjects.Length >= 1)
                     {
-                        hitObjects[0].SendMessage("takedamage", damage, SendMessageOptions.DontRequireReceiver);
+                        hitObjects[1].SendMessage("takedamage", damage, SendMessageOptions.DontRequireReceiver);
                     }
 
                 }
@@ -173,51 +250,16 @@ public class charMovement : MonoBehaviour
                     anim.SetBool("stab", false);
                 }
             }
+				
+			}
 
             if (!Input.GetButton("stab"))
             {
                 anim.SetBool("stab", false);
             }
 
-            if (walk)
-            {
-                anim.SetBool("walk", true);
-            }
-
-            if (!walk)
-            {
-                anim.SetBool("walk", false);
-            }
-
-
-            // right
-            if (horiz > 0.01)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-            }
-
-            // left
-            if (horiz < -0.01)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 270);
-            }
-
-            // up
-            if (vert > 0.01)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 180);
-            }
-
-            // down
-            if (vert < -0.01)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-
             UpdateHealth();
 
-            transform.Translate(horiz * Time.deltaTime * speed, vert * Time.deltaTime * speed, 0, Space.World);
 
         }
     }
-}
