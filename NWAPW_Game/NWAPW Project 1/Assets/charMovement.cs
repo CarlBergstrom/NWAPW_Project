@@ -9,14 +9,28 @@ public class charMovement : MonoBehaviour
 
     //Variables Controlling Attacking
     public int damage = 1;
-    public float mrange = 1;
+    public float mrange = 3;
     public Transform meleePoint;
 	public Transform hp_follow;
-	bool atkRecharge = false;
-	int RechargeTime = 0;
+    public Transform Character;
     public static bool hasSword = false; //WIP
+    public Transform Sword;
+    Vector3 SwordSpawnLocationDown;
+    Vector3 SwordSpawnLocationUp;
+    Vector3 SwordSpawnLocationLeft;
+    Vector3 SwordSpawnLocationRight;
+    bool atkRecharge = false;
+    int RechargeTime = 0;
+    bool isLeft;
+    bool isRight;
+    bool isDown;
+    bool isUp;
+    public Transform FireBallPrefab;
+    public static bool hasFireball = false;
 
-    float speed = 5;
+
+    float playerRotation = 0;
+    float speed = 10;
 
     public static int curRoom = 1;
 
@@ -32,9 +46,12 @@ public class charMovement : MonoBehaviour
     public static bool playerHasDied = false;
     public static bool playerOutOfLives = false;
     public static bool canTakeDamage = true;
+    int invulCounter = 0;
+    int invulDuration = 60;
     public static bool playerHasTakenDamage = false;
     public static Vector2 respawnLocation;
     int stunCounter = 0;
+    int stunDuration = 10;
     bool isStunned = false;
 
     // Use this for initialization
@@ -54,57 +71,61 @@ public class charMovement : MonoBehaviour
 
 	void takedamageP(int Edamage)
     {
-  	    playerHealth -= Edamage;
-    	playerHasTakenDamage = true;
-		int hpLowerBy = Edamage;
-		Collider2D[] hpSense = Physics2D.OverlapCircleAll(hp_follow.position, 0f);
-		if (Edamage == 1) 
-		{
-			Debug.Log ("message to HP sent");
-			hpSense[0].SendMessage ("hpDown1", SendMessageOptions.DontRequireReceiver);
-		}
-		if (Edamage == 2) 
-		{
-			hpSense[0].SendMessage ("hpDown2", SendMessageOptions.DontRequireReceiver);		}
-		if (Edamage == 3) 
-		{
-			hpSense[0].SendMessage ("hpDown3", SendMessageOptions.DontRequireReceiver);
-		}
-		if (Edamage == 4) 
-		{
-			hpSense[0].SendMessage ("hpDown4", SendMessageOptions.DontRequireReceiver);
-		}
-		if (Edamage == 5) 
-		{
-			hpSense[0].SendMessage ("hpDown5", SendMessageOptions.DontRequireReceiver);
-		}
-		if (Edamage == 6) 
-		{
-			hpSense[0].SendMessage ("hpDown6", SendMessageOptions.DontRequireReceiver);
-		}
-		if (Edamage == 7) 
-		{
-			hpSense[0].SendMessage ("hpDown7", SendMessageOptions.DontRequireReceiver);
-		}
-		if (Edamage == 8) 
-		{
-			hpSense[0].SendMessage ("hpDown8", SendMessageOptions.DontRequireReceiver);
-		}
-		if (Edamage == 9) 
-		{
-			hpSense[0].SendMessage ("hpDown9", SendMessageOptions.DontRequireReceiver);
-		}
-		if (Edamage == 10) 
-		{
-			hpSense[0].SendMessage ("hpDown10", SendMessageOptions.DontRequireReceiver);
-		}
+        if (canTakeDamage)
+        {
+            playerHealth -= Edamage;
+            playerHasTakenDamage = true;
+            int hpLowerBy = Edamage;
+            Collider2D[] hpSense = Physics2D.OverlapCircleAll(hp_follow.position, 0f);
+            if (Edamage == 1)
+            {
+                Debug.Log("message to HP sent");
+                hpSense[0].SendMessage("hpDown1", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 2)
+            {
+                hpSense[0].SendMessage("hpDown2", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 3)
+            {
+                hpSense[0].SendMessage("hpDown3", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 4)
+            {
+                hpSense[0].SendMessage("hpDown4", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 5)
+            {
+                hpSense[0].SendMessage("hpDown5", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 6)
+            {
+                hpSense[0].SendMessage("hpDown6", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 7)
+            {
+                hpSense[0].SendMessage("hpDown7", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 8)
+            {
+                hpSense[0].SendMessage("hpDown8", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 9)
+            {
+                hpSense[0].SendMessage("hpDown9", SendMessageOptions.DontRequireReceiver);
+            }
+            if (Edamage == 10)
+            {
+                hpSense[0].SendMessage("hpDown10", SendMessageOptions.DontRequireReceiver);
+            }
+        }
     }
 
     void UpdateCollisions()
     {
         if (PickupSpeed.playerHasSpeedBoost)
         {
-            speed = 10;
+            speed = 15;
             SpeedCounter += 1;
             if(SpeedCounter >= SpeedDuration)
             {
@@ -114,7 +135,7 @@ public class charMovement : MonoBehaviour
         }
         else
         {
-            speed = 5;
+            speed = 10;
         }
     }
 
@@ -132,46 +153,72 @@ public class charMovement : MonoBehaviour
         }
     }
 
-    void stunFor(int stunDuration)
-    {
-        if(stunCounter < stunDuration)
-        {
-            speed = 0;
-            stunCounter += 1;
-        }
-        else
-        {
-            isStunned = false;
-            speed = 5;
-        }
-
-    }
-
-
     void UpdatePos()
     {
         PlayerPos[0] = transform.position.x;
         PlayerPos[1] = transform.position.y;
+        SwordSpawnLocationDown[0] = transform.position.x - 0.4025f;
+        SwordSpawnLocationDown[1] = transform.position.y - 0.657f;
+        SwordSpawnLocationDown[2] = -3;
+        SwordSpawnLocationUp[0] = transform.position.x - 0.4025f;
+        SwordSpawnLocationUp[1] = transform.position.y - 0.657f;
+        SwordSpawnLocationUp[2] = -3;
+        SwordSpawnLocationRight[0] = transform.position.x - 0.4025f;
+        SwordSpawnLocationRight[1] = transform.position.y - 0.657f;
+        SwordSpawnLocationRight[2] = -3;
+        SwordSpawnLocationLeft[0] = transform.position.x - 0.375f;
+        SwordSpawnLocationLeft[1] = transform.position.y - 0.70f;
+        SwordSpawnLocationLeft[2] = -3;
     }
 
     void UpdateHealth()
     {
         if (playerHasTakenDamage)
         {
-            speed = -12;
+            //speed = -12;
+
             isStunned = true;
             playerHasTakenDamage = false;
+            canTakeDamage = false;
         }
         else if (isStunned)
         {
-            stunFor(10);
+            if (stunCounter < stunDuration)
+            {
+                speed = 0;
+                stunCounter += 1;
+            }
+            else
+            {
+                isStunned = false;
+                speed = 10;
+            }
         }
-        if (playerHealth <= 0)
+        if (!canTakeDamage)
+        {
+            invulCounter += 1;
+            if(invulCounter >= invulDuration)
+            {
+                canTakeDamage = true;
+                invulCounter = 0;
+            }
+        }
+        if (playerHasDied)
+        {
+            playerHealth = 10;
+            playerHasDied = false;
+        }
+        else if (playerHealth <= 0)
         {
             playerLives -= 1;
             transform.position = respawnLocation;
             playerHasDied = true;
         }
+        if(playerLives <= 0)
+        {
+            playerOutOfLives = true;
+        }
+  
     }
 
     // Update is called once per frame
@@ -181,61 +228,72 @@ public class charMovement : MonoBehaviour
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
-			bool walk = (Mathf.Abs(horizontal) + Mathf.Abs(vertical)) > 0;
+            bool walk = (Mathf.Abs(horizontal) + Mathf.Abs(vertical)) > 0;
             UpdateCollisions();
+
+            if (walk)
+            {
+                anim.SetBool("walk", true);
+            }
+
+            if (!walk)
+            {
+                anim.SetBool("walk", false);
+            }
+
+            // right
+            if (horizontal > 0.01)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+                playerRotation = 90;
+                isRight = true;
+                isLeft = false;
+            }
+
+            // left
+            if (horizontal < -0.01)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 270);
+                playerRotation = 270;
+                isRight = false;
+                isLeft = true; ;
+            }
+
+            // up
+            if (vertical > 0.01)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 180);
+                playerRotation = 180;
+                isRight = false;
+                isLeft = false;
+                isUp = true;
+                isDown = false;
+            }
+
+            // down
+            if (vertical < -0.01)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                playerRotation = 0;
+                isRight = false;
+                isLeft = false;
+                isUp = false;
+                isDown = true;
+            }
+
+            transform.Translate(horizontal * Time.deltaTime * speed, vertical * Time.deltaTime * speed, 0, Space.World);
             UpdatePos();
-
-			if (walk)
-			{
-				anim.SetBool("walk", true);
-			}
-
-			if (!walk)
-			{
-				anim.SetBool("walk", false);
-			}
-
-			// right
-			if (horizontal > 0.01)
-			{
-				transform.rotation = Quaternion.Euler(0, 0, 90);
-			}
-
-			// left
-			if (horizontal < -0.01)
-			{
-				transform.rotation = Quaternion.Euler(0, 0, 270);
-			}
-
-			// up
-			if (vertical > 0.01)
-			{
-				transform.rotation = Quaternion.Euler(0, 0, 180);
-			}
-
-			// down
-			if (vertical < -0.01)
-			{
-				transform.rotation = Quaternion.Euler(0, 0, 0);
-			}
-
-			transform.Translate(horizontal * Time.deltaTime * speed, vertical * Time.deltaTime * speed, 0, Space.World);
 
             if (Input.GetButton("stab")) //Implement hasSword later
             {
                 if (!atkRecharge)
                 {
-                    Collider2D[] hitObjects = Physics2D.OverlapCircleAll(meleePoint.position, mrange);
+                    Instantiate(Sword, SwordSpawnLocationDown, Quaternion.Euler(0, 0, playerRotation), Character);
                     anim.SetTrigger("melee");
                     anim.SetBool("stab", true);
                     atkRecharge = true;
                     anim.SetBool("recharge", true);
                     anim.SetBool("walk", false);
-
-                    if (hitObjects.Length >= 1)
-                    {
-                        hitObjects[1].SendMessage("takedamage", damage, SendMessageOptions.DontRequireReceiver);
-                    }
 
                 }
             }
@@ -250,8 +308,11 @@ public class charMovement : MonoBehaviour
                     anim.SetBool("stab", false);
                 }
             }
-				
-			}
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Instantiate(FireBallPrefab, PlayerPos, Quaternion.Euler(0, 0, playerRotation));
+            }
+
 
             if (!Input.GetButton("stab"))
             {
@@ -260,6 +321,6 @@ public class charMovement : MonoBehaviour
 
             UpdateHealth();
 
-
         }
     }
+}

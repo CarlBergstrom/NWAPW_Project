@@ -5,22 +5,24 @@ using UnityEngine;
 public class Gloop_move : MonoBehaviour {
 
     //Variables involved with movement
-    Vector2 currentPosition;
 	public int health;
-	public int speed;
 	public int Edamage;
 	public float range;
     bool shouldTurn = true;
+    public Transform Barsense;
 
 	Animator anim;
 
     //Variables involved in health
     int enemyHealth = 2;
     public static bool anEnemyHasDied;
+    public static bool anEnemyHasTakenDamage = false;
+    int dyingCounter = 0;
+    int dyingDuration = 100;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		anim = GetComponent<Animator> ();
 	}
 
@@ -36,17 +38,35 @@ public class Gloop_move : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
-		if (hitObjects.Length >= 1)
+		if (hitObjects.Length > 2)
 		{
-			hitObjects[0].SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
+			hitObjects[2].SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
+            Debug.Log("Enemy has hit: " + hitObjects[2].name);
 		}
+        if (anEnemyHasDied)
+        {
+            dyingCounter += 1;
+            if(dyingCounter >= dyingDuration)
+            {
+                dyingCounter = 0;
+                anEnemyHasDied = false;
+            }
+        }
     }
 
 	void takedamage(int damage)
 	{
 		health -= damage;
-		if (health <= 0) 
+        Collider2D[] barS = Physics2D.OverlapCircleAll(Barsense.position, 0.25f);
+        anEnemyHasTakenDamage = true;
+        if (barS.Length > 1)
+        {
+            Debug.Log("Sensed " + barS[1].name);
+            barS[1].SendMessage("GloopDmgDwn");
+        }
+        if (health <= 0) 
 		{
+            anEnemyHasDied = true;
 			anim.SetTrigger ("die");
 			Destroy (gameObject, 1.7f);
 		}
