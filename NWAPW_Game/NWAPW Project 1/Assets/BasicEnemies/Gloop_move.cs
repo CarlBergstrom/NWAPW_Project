@@ -11,6 +11,9 @@ public class Gloop_move : MonoBehaviour {
     bool shouldTurn = true;
     public Transform Barsense;
 
+
+    bool canDealDamage = true;
+
 	Animator anim;
 
     //Variables involved in health
@@ -18,7 +21,7 @@ public class Gloop_move : MonoBehaviour {
     public static bool anEnemyHasDied;
     public static bool anEnemyHasTakenDamage = false;
     int dyingCounter = 0;
-    int dyingDuration = 100;
+    int dyingDuration = 90;
 
 
     // Use this for initialization
@@ -38,17 +41,19 @@ public class Gloop_move : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
-		if (hitObjects.Length > 2)
+		if (hitObjects.Length > 2 && canDealDamage)
 		{
 			hitObjects[2].SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
             Debug.Log("Enemy has hit: " + hitObjects[2].name);
 		}
         if (anEnemyHasDied)
         {
+            canDealDamage = false;
             dyingCounter += 1;
             if(dyingCounter >= dyingDuration)
             {
                 dyingCounter = 0;
+                canDealDamage = true;
                 anEnemyHasDied = false;
             }
         }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4407313113436104}
   - component: {fileID: 212790693146203300}
   - component: {fileID: 58139730571653664}
-  - component: {fileID: 114335470108035472}
+  - component: {fileID: 114298792449110460}
   m_Layer: 11
   m_Name: Treasure
   m_TagString: Untagged
@@ -36,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1232472506192474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.69, y: 1.26, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 116.94, y: 103.55, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: -0.0066788597, y: 0}
   serializedVersion: 2
   m_Radius: 0.14675193
---- !u!114 &114335470108035472
+--- !u!114 &114298792449110460
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232472506192474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3011947227731f44a9c375aeffebded7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3212667db5882ff4681fc1ac62b0ee11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212790693146203300
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d60040884cab0cc408006acc10295ddb, type: 3}
-  m_Color: {r: 0.9852941, g: 0.8764721, b: 0.26805797, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

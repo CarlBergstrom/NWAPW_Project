@@ -6,6 +6,7 @@ public class CameraRoomFollow : MonoBehaviour {
 
     Vector3 gameOverScreen;
     Vector3 gameStartScreen;
+    Vector3 bossRoomPosition;
     public static bool gameHasStarted = false;
     float targetOrtho;
     float playerOrtho = 9;
@@ -14,6 +15,9 @@ public class CameraRoomFollow : MonoBehaviour {
     float smoothSpeed = 4.0f;
     public static bool isInBossRoom = false;
     bool gameOver = false;
+    public static bool cameraShouldShake = false;
+    float shakeAmt = 0.5f;
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,8 +27,20 @@ public class CameraRoomFollow : MonoBehaviour {
         gameStartScreen[0] = 0;
         gameStartScreen[1] = -70;
         gameStartScreen[2] = -10;
+        bossRoomPosition[0] = 150;
+        bossRoomPosition[1] = 20;
+        bossRoomPosition[2] = -10;
         targetOrtho = Camera.main.orthographicSize;
         initialOrtho = Camera.main.orthographicSize;
+    }
+
+    void CameraShake()
+    {
+        float quakeAmt = Random.value * shakeAmt * 2 - shakeAmt;
+        Vector3 pp = transform.position;
+        pp.y += quakeAmt;
+        pp.x += quakeAmt;
+        transform.position = pp;
     }
 	
 	// Update is called once per frame
@@ -66,15 +82,29 @@ public class CameraRoomFollow : MonoBehaviour {
             }
             if (!gameOver)
             {
-                if (isInBossRoom)
+                if (cameraShouldShake)
                 {
+                    transform.position = bossRoomPosition;
+                    CameraShake();
+                }
+                else if (isInBossRoom)
+                {
+                    if (!ActivateBoss.isAtBoss)
+                    {
+                        transform.position = charMovementGood.PlayerPos;
+                    }
+                    else
+                    {
+                        transform.position = bossRoomPosition;
+                    }
                     targetOrtho = bossOrtho;
+
                 }
                 else
                 {
                     targetOrtho = playerOrtho;
+                    transform.position = charMovementGood.PlayerPos;
                 }
-                transform.position = charMovementGood.PlayerPos;
                 Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
             }
 

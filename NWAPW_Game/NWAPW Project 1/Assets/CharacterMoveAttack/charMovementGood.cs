@@ -22,9 +22,12 @@ public class charMovementGood : MonoBehaviour
 
     public static Vector3 PlayerPos;
 
-    //Variables controlling upgrades
+    //Variables controlling upgrades and pickups
     int SpeedCounter = 0;
     int SpeedDuration = 120;
+    public static bool hasLeftKeyHalf = false;
+    public static bool hasRightKeyHalf = false;
+    public static bool hasFullKey = false;
 
     //Variables controlling Health and Death
 	public static int playerHealth = 10;
@@ -39,6 +42,7 @@ public class charMovementGood : MonoBehaviour
     bool troo = true;
     int invulCounter = 0;
     int invulDur = 60;
+    public static bool playerHasPickedUpHealth = false;
 
     // Use this for initialization
     void Start()
@@ -129,6 +133,12 @@ public class charMovementGood : MonoBehaviour
             respawnLocation[1] = transform.position.y;
             SetRespawnPoint.playerHasNewRespawn = false;
         }
+        if(hasLeftKeyHalf && hasRightKeyHalf)
+        {
+            hasFullKey = true;
+            hasLeftKeyHalf = false;
+            hasRightKeyHalf = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -193,6 +203,8 @@ public class charMovementGood : MonoBehaviour
             playerLives -= 1;
             playerHealth = 10;
             transform.position = respawnLocation;
+            CameraRoomFollow.isInBossRoom = false;
+            ActivateBoss.isAtBoss = false;
             playerHasDied = true;
         }
         if(playerLives <= 0)
@@ -206,6 +218,14 @@ public class charMovementGood : MonoBehaviour
             {
                 canTakeDamage = true;
                 invulCounter = 0;
+            }
+        }
+        if (playerHasPickedUpHealth)
+        {
+            playerHealth += 2;
+            if(playerHealth > 10)
+            {
+                playerHealth = 10;
             }
         }
     }
@@ -296,7 +316,7 @@ public class charMovementGood : MonoBehaviour
             }
 
             UpdateHealth();
-
+            //Debug.Log("An enemy has died: " + Gloop_move.anEnemyHasDied);
 
         }
     }

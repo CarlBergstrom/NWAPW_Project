@@ -147,7 +147,7 @@ public class Enemy_Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CameraRoomFollow.gameHasStarted)
+        if (CameraRoomFollow.gameHasStarted && !CameraRoomFollow.isInBossRoom)
         {
             currentPositionFollow[0] = transform.position.x;
             currentPositionFollow[1] = transform.position.y;
