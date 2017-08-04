@@ -23,12 +23,29 @@ public class Enemy_Follow : MonoBehaviour
     bool tooCloseY = false;
     int distanceForStopX = 5;
     int distanceForStopY = 5;
+	public int health;
+	public int Edamage;
+	public float range;
+    bool shouldTurn = true;
+    public Transform Barsense;
+    public Transform heartPickup;
+    float dropDetermin = 0;
+	bool canDealDamage = true;
+	
     Animator follow_anim;
+	Animator anim;
 
+    //Variables involved in health
+    int enemyHealth = 2;
+    public static bool anEnemyHasDied;
+    public static bool anEnemyHasTakenDamage = false;
+    int dyingCounter = 0;
+    int dyingDuration = 100;
 
     // Use this for initialization
     void Start()
     {
+		anim = GetComponent<Animator>();
         follow_anim = GetComponent<Animator>();
     }
 
@@ -195,7 +212,43 @@ public class Enemy_Follow : MonoBehaviour
             {
                 transform.Translate(0, -speed * Time.deltaTime, 0);
             }
+			Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
+		if (hitObjects.Length > 2 && canDealDamage)
+		{
+			hitObjects[2].SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
+            Debug.Log("Enemy has hit: " + hitObjects[2].name);
+		}
+        if (anEnemyHasDied)
+        {
+            canDealDamage = false;
+            dyingCounter += 1;
+            if(dyingCounter >= dyingDuration)
+            {
+                dyingCounter = 0;
+                canDealDamage = true;
+                anEnemyHasDied = false;
+            }
+        }
             //Debug.Log("X too far: " + tooFarX + " Y too far: " + tooFarY);
         }
     }
+	void takedamage(int damage)
+	{
+		health -= damage;
+        Collider2D[] barS = Physics2D.OverlapCircleAll(Barsense.position, 0.25f);
+        anEnemyHasTakenDamage = true;
+        if (barS.Length > 1)
+        {
+            Debug.Log("Sensed " + barS[1].name);
+            barS[1].SendMessage("GloopDmgDwn");
+        }
+        if (health <= 0) 
+		{
+            dropDetermin = Random.Range(-1, 1);
+            anEnemyHasDied = true;
+			anim.SetTrigger ("die");
+            Instantiate(heartPickup, transform.position, transform.rotation);
+			Destroy (gameObject, 1.7f);
+		}
+	}
 }

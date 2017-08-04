@@ -25,7 +25,7 @@ public class BossShuffle : MonoBehaviour {
 
 
     bool shouldChooseAction = false;
-    bool shouldWalkLeft = true;
+    public bool shouldWalkLeft = true;
 
 
     int actionTimer = 180;
@@ -89,7 +89,7 @@ public class BossShuffle : MonoBehaviour {
 
     void chooseAttack()
     {
-        if (attackCounter >= 2)
+        if (attackCounter >= 4)
         {
             //Set to be vulnerable
             shouldChangeDirection = false;
@@ -177,11 +177,11 @@ public class BossShuffle : MonoBehaviour {
         {
             if (shouldWalkLeft)
             {
-                transform.Translate(5 * Time.deltaTime, 0, 0);
+                transform.Translate(-5 * Time.deltaTime, 0, 0);
             }
             else
             {
-                transform.Translate(-5 * Time.deltaTime, 0, 0);
+                transform.Translate(5 * Time.deltaTime, 0, 0);
             }
             if(transform.position.x >= 158)
             {
