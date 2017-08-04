@@ -316,7 +316,7 @@ public class charMovementGood : MonoBehaviour
             }
 
             UpdateHealth();
-            //Debug.Log("An enemy has died: " + Gloop_move.anEnemyHasDied);
+            Debug.Log("An enemy has died: " + Gloop_move.anEnemyHasDied);
 
         }
     }

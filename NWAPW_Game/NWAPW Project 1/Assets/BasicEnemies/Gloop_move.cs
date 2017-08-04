@@ -10,6 +10,8 @@ public class Gloop_move : MonoBehaviour {
 	public float range;
     bool shouldTurn = true;
     public Transform Barsense;
+    public Transform heartPickup;
+    float dropDetermin = 0;
 
 
     bool canDealDamage = true;
@@ -21,7 +23,7 @@ public class Gloop_move : MonoBehaviour {
     public static bool anEnemyHasDied;
     public static bool anEnemyHasTakenDamage = false;
     int dyingCounter = 0;
-    int dyingDuration = 90;
+    int dyingDuration = 100;
 
 
     // Use this for initialization
@@ -71,8 +73,10 @@ public class Gloop_move : MonoBehaviour {
         }
         if (health <= 0) 
 		{
+            dropDetermin = Random.Range(-1, 1);
             anEnemyHasDied = true;
 			anim.SetTrigger ("die");
+            Instantiate(heartPickup, transform.position, transform.rotation);
 			Destroy (gameObject, 1.7f);
 		}
 	}
