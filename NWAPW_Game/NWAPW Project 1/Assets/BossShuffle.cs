@@ -36,7 +36,7 @@ public class BossShuffle : MonoBehaviour {
 
 
     public Transform GlbrProjectile;
-    bool phaseTwo = false;
+    bool phaseTwo = true;
     public static bool BossHasDied = false;
 
     public Animator anim;
@@ -183,11 +183,11 @@ public class BossShuffle : MonoBehaviour {
             {
                 transform.Translate(5 * Time.deltaTime, 0, 0);
             }
-            if(transform.position.x >= 158)
+            if(transform.position.x >= charMovementGood.PlayerPos.x)
             {
                 shouldWalkLeft = true;
             }
-            else if(transform.position.x <= 142)
+            else if(transform.position.x < charMovementGood.PlayerPos.x)
             {
                 shouldWalkLeft = false;
             }
@@ -216,12 +216,12 @@ public class BossShuffle : MonoBehaviour {
             actionCounter += 1;
             if(actionCounter <= 30)
             {
-                transform.Translate(0, 3 * Time.deltaTime, 0);
+                transform.Translate(0, -3 * Time.deltaTime, 0);
                 //Bite animation
             }
             else if (actionCounter > 30 && actionCounter <= 60)
             {
-                transform.Translate(0, -3 * Time.deltaTime, 0);
+                transform.Translate(0, 3 * Time.deltaTime, 0);
                 hasBitten = true;
                 shouldChooseAction = true;
                 actionCounter = 0;
@@ -233,7 +233,7 @@ public class BossShuffle : MonoBehaviour {
         {
             if (!hasProjectiled)
             {
-                //Instantiate(GlbrProjectile, transform.position, Quaternion.identity);
+                Instantiate(GlbrProjectile, transform.position, Quaternion.identity);
                 hasProjectiled = true;
             }
             actionCounter += 1;

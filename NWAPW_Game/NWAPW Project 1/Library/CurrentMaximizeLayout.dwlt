@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 1272
+  controlID: 2116
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 1273
+  controlID: 2095
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -184,9 +184,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 149.59262, y: 3.4753375, z: 2.5}
+    m_Target: {x: 193.5808, y: 31.649313, z: 2.5}
     speed: 2
-    m_Value: {x: 149.59262, y: 3.4753375, z: 2.5}
+    m_Value: {x: 193.5808, y: 31.649313, z: 2.5}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -213,9 +213,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 70.5234
+    m_Target: 88.85472
     speed: 2
-    m_Value: 70.5234
+    m_Value: 88.85472
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -266,10 +266,10 @@ MonoBehaviour:
     - {x: 604.4, y: 239}
     - {x: 520.4, y: 211}
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 74f6023d0b67cb743bd03bee350c52c5,
+  m_AnimatorController: {fileID: 9100000, guid: 2707ec068670b1d468c878a1eef4b423,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107054122094538574, guid: 74f6023d0b67cb743bd03bee350c52c5,
+  - m_Target: {fileID: 1107903545287205314, guid: 2707ec068670b1d468c878a1eef4b423,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -360,8 +360,8 @@ MonoBehaviour:
     height: 926
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e82e0000
-    m_LastClickedID: 12008
+    m_SelectedIDs: 82320000
+    m_LastClickedID: 0
     m_ExpandedIDs: 1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -403,8 +403,8 @@ MonoBehaviour:
     y: 0
     width: 295
     height: 947
-  m_MinSize: {x: 234, y: 271}
-  m_MaxSize: {x: 10004, y: 10021}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
@@ -448,19 +448,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/GLB_BOSS
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/GLB_BOSS
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\carlw\NWAPW Game\Copy_Of_NWAPW_Project\NWAPW_Project\NWAPW_Game\NWAPW
     Project 1
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 72260000
-    m_LastClickedID: 9842
+    m_SelectedIDs: cc2b0000
+    m_LastClickedID: 11212
     m_ExpandedIDs: 00000000722600002e27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -514,10 +514,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e82e0000
-    m_LastClickedInstanceID: 12008
+    m_SelectedInstanceIDs: 82320000
+    m_LastClickedInstanceID: 12930
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: 7e2800003c350000e6290000c02600003c31000080e2000074280000aa31000016bb0000bc280000a62c0000962a0000484d00001467000034290000
+    m_ExpandedInstanceIDs: 7e2800003c350000e6290000c02600003c31000080e2000074280000aa31000016bb0000bc280000a62c0000962a0000484d000014670000342900001e270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -541,7 +541,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 821.5}
+    m_ScrollPosition: {x: 0, y: 1304}
     m_GridSize: 64
   m_DirectoriesAreaWidth: 110
 --- !u!114 &12
@@ -595,7 +595,7 @@ MonoBehaviour:
     y: 92
     width: 403
     height: 926
-  m_ScrollPosition: {x: 0, y: 120}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: -160

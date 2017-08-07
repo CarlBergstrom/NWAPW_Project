@@ -4117,7 +4117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d717c688f49a89e468ae5ad47648afa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlbrProjectile: {fileID: 0}
+  shouldWalkLeft: 1
+  GlbrProjectile: {fileID: 4501536697938034, guid: 27afa32c937aa4a44bb2a3836ec2b574,
+    type: 2}
   anim: {fileID: 847765608}
 --- !u!95 &847765608
 Animator:
