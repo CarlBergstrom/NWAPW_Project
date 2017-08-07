@@ -209,6 +209,7 @@ public class BossShuffle : MonoBehaviour {
                 shouldChooseAction = true;
                 vulnCounter = 0;
                 attackCounter = 0;
+                isVuln = false;
             }
         }
         else if (isBiting)
@@ -216,12 +217,15 @@ public class BossShuffle : MonoBehaviour {
             actionCounter += 1;
             if(actionCounter <= 30)
             {
-                transform.Translate(0, -3 * Time.deltaTime, 0);
+                transform.Translate(0, -10 * Time.deltaTime, 0);
                 //Bite animation
             }
             else if (actionCounter > 30 && actionCounter <= 60)
             {
-                transform.Translate(0, 3 * Time.deltaTime, 0);
+                transform.Translate(0, 10 * Time.deltaTime, 0);
+            }
+            else
+            {
                 hasBitten = true;
                 shouldChooseAction = true;
                 actionCounter = 0;
