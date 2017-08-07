@@ -34,9 +34,17 @@ public class CameraRoomFollow : MonoBehaviour {
         initialOrtho = Camera.main.orthographicSize;
     }
 
-    void CameraShake()
+    void CameraShake(bool isBigShake)
     {
-        float quakeAmt = Random.value * shakeAmt * 2 - shakeAmt;
+        float quakeAmt;
+        if (isBigShake)
+        {
+            quakeAmt = Random.value * shakeAmt * 2 - shakeAmt;
+        }
+        else
+        {
+            quakeAmt = Random.value * shakeAmt - shakeAmt;
+        }
         Vector3 pp = transform.position;
         pp.y += quakeAmt;
         pp.x += quakeAmt;
@@ -85,7 +93,11 @@ public class CameraRoomFollow : MonoBehaviour {
                 if (cameraShouldShake)
                 {
                     transform.position = bossRoomPosition;
-                    CameraShake();
+                    CameraShake(true);
+                }
+                else if (DoorOpen.isOpenning)
+                {
+                    CameraShake(true);
                 }
                 else if (isInBossRoom)
                 {

@@ -3835,9 +3835,9 @@ GameObject:
   m_Component:
   - component: {fileID: 825887840}
   - component: {fileID: 825887839}
+  - component: {fileID: 825887836}
   - component: {fileID: 825887838}
   - component: {fileID: 825887837}
-  - component: {fileID: 825887836}
   m_Layer: 0
   m_Name: big_door_forest
   m_TagString: Untagged
@@ -3856,6 +3856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49032ed20d9b31e418c8294656403cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 825887838}
 --- !u!61 &825887837
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7481,6 +7482,7 @@ GameObject:
   - component: {fileID: 1603434125}
   - component: {fileID: 1603434128}
   - component: {fileID: 1603434127}
+  - component: {fileID: 1603434129}
   - component: {fileID: 1603434126}
   m_Layer: 0
   m_Name: New Sprite
@@ -7590,6 +7592,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
+--- !u!114 &1603434129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1603434124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49032ed20d9b31e418c8294656403cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1603434126}
 --- !u!1 &1626413833
 GameObject:
   m_ObjectHideFlags: 0
