@@ -108,32 +108,65 @@ public class BossShuffle : MonoBehaviour {
                 if (attackController > 0.0 && attackController <= 1.0)
                 {
                     //Spit
-                    anim.SetBool("walk", false);
-                    attackCounter += 1;
-                    isProjectiling = true;
-                    isBiting = false;
-                    isWalking = false;
-                    shouldChooseAction = false;
+                    if (!hasProjectiled)
+                    {
+                        anim.SetBool("walk", false);
+                        attackCounter += 1;
+                        isProjectiling = true;
+                        isBiting = false;
+                        isWalking = false;
+                        shouldChooseAction = false;
+                    }
+                    else
+                    {
+                        anim.SetBool("walk", true);
+                        isWalking = true;
+                        isBiting = false;
+                        isProjectiling = false;
+                        shouldChooseAction = false;
+                    }
                 }
                 else if (attackController > 1.0 && attackController <= 2.0)
                 {
                     //Bite
-                    anim.SetBool("walk", false);
-                    attackCounter += 1;
-                    isBiting = true;
-                    isProjectiling = false;
-                    isWalking = false;
-                    shouldChooseAction = false;
+                    if (!hasBitten)
+                    {
+                        anim.SetBool("walk", false);
+                        attackCounter += 1;
+                        isBiting = true;
+                        isProjectiling = false;
+                        isWalking = false;
+                        shouldChooseAction = false;
+                    }
+                    else
+                    {
+                        anim.SetBool("walk", true);
+                        isWalking = true;
+                        isBiting = false;
+                        isProjectiling = false;
+                        shouldChooseAction = false;
+                    }
                 }
                 else if (attackController > 2.0 && attackController <= 3.0)
                 {
                     //Spawn Enemy if no existing spawned enemies exist
-                    anim.SetBool("walk", false);
-                    attackCounter += 1;
-                    isProjectiling = true;
-                    isBiting = false;
-                    isWalking = false;
-                    shouldChooseAction = false;
+                    if (!hasProjectiled)
+                    {
+                        anim.SetBool("walk", false);
+                        attackCounter += 1;
+                        isProjectiling = true;
+                        isBiting = false;
+                        isWalking = false;
+                        shouldChooseAction = false;
+                    }
+                    else
+                    {
+                        anim.SetBool("walk", true);
+                        isWalking = true;
+                        isBiting = false;
+                        isProjectiling = false;
+                        shouldChooseAction = false;
+                    }
                 }
                 else if (attackController > 3.0 && attackController <= 5.0)
                 {
@@ -158,12 +191,23 @@ public class BossShuffle : MonoBehaviour {
                 }
                 else if(attackController > 3.0 && attackController <= 5.0)
                 {
-                    anim.SetBool("walk", false);
-                    attackCounter += 1;
-                    isProjectiling = true;
-                    isBiting = false;
-                    isWalking = false;
-                    shouldChooseAction = false;
+                    if (!hasProjectiled)
+                    {
+                        anim.SetBool("walk", false);
+                        attackCounter += 1;
+                        isProjectiling = true;
+                        isBiting = false;
+                        isWalking = false;
+                        shouldChooseAction = false;
+                    }
+                    else
+                    {
+                        anim.SetBool("walk", true);
+                        isWalking = true;
+                        isBiting = false;
+                        isProjectiling = false;
+                        shouldChooseAction = false;
+                    }
                 }
             }
             

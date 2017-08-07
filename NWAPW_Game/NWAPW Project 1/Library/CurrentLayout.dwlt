@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 492}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 911, y: 442}
-  m_MaxSize: {x: 22006, y: 10021}
+  m_MinSize: {x: 917, y: 442}
+  m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 943
+  controlID: 23
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 944
+  controlID: 24
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -370,9 +370,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 193.5808, y: 31.649313, z: 2.5}
+    m_Target: {x: 148.87141, y: -15.083025, z: 2.5}
     speed: 2
-    m_Value: {x: 193.5808, y: 31.649313, z: 2.5}
+    m_Value: {x: 148.87141, y: -15.083025, z: 2.5}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -399,9 +399,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 88.85472
+    m_Target: 32.815536
     speed: 2
-    m_Value: 88.85472
+    m_Value: 32.815536
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -452,10 +452,10 @@ MonoBehaviour:
     - {x: 604.4, y: 239}
     - {x: 520.4, y: 211}
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 2707ec068670b1d468c878a1eef4b423,
+  m_AnimatorController: {fileID: 9100000, guid: 0c270f361862644458542360ca9c52cd,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107903545287205314, guid: 2707ec068670b1d468c878a1eef4b423,
+  - m_Target: {fileID: 1107479053083358724, guid: 0c270f361862644458542360ca9c52cd,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -496,9 +496,9 @@ MonoBehaviour:
     height: 926
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 1afcffff00000000
+    m_SelectedIDs: 5cbbffff
+    m_LastClickedID: -17572
+    m_ExpandedIDs: 18fcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -559,20 +559,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/GLB_BOSS
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/GLB_BOSS
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\carlw\NWAPW Game\Copy_Of_NWAPW_Project\NWAPW_Project\NWAPW_Game\NWAPW
     Project 1
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: da2b0000
-    m_LastClickedID: 11226
-    m_ExpandedIDs: 00000000782600003c27000000ca9a3bffffff7f
+    m_SelectedIDs: 98260000
+    m_LastClickedID: 9880
+    m_ExpandedIDs: 00000000982600005c27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -600,7 +600,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000782600003c27000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000982600005c270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -627,8 +627,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: 7e2800003c350000e6290000c02600003c31000080e2000074280000aa31000016bb0000bc280000a62c0000962a0000484d000014670000342900001e270000
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: 7e2800003c350000e6290000c02600003c31000080e2000074280000aa31000016bb0000bc280000a62c0000962a0000484d000014670000342900001e270000282d000014290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -652,7 +652,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 1304}
+    m_ScrollPosition: {x: 0, y: 2309.5}
     m_GridSize: 64
   m_DirectoriesAreaWidth: 110
 --- !u!114 &17
