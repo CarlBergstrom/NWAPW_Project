@@ -39,7 +39,6 @@ public class charMovementGood : MonoBehaviour
     public static Vector2 respawnLocation;
     int stunCounter = 0;
     bool isStunned = false;
-    bool troo = true;
     int invulCounter = 0;
     int invulDur = 60;
     public static bool playerHasPickedUpHealth = false;
