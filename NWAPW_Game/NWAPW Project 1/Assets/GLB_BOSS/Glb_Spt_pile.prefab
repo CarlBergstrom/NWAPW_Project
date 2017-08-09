@@ -94,11 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1803075212823788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf98d9569f3c3443b7b16470dd7edca, type: 3}
+  m_Script: {fileID: 11500000, guid: b77f157562f559f46ae1298c8378a3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Edamage: 4
-  range: 1
+  Edamage: 0
+  range: 0
   Player: {fileID: 0}
 --- !u!212 &212160845518627686
 SpriteRenderer:

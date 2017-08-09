@@ -14,7 +14,7 @@ public class bossHP : MonoBehaviour {
 	void BossDmg()
 	{
 		anim.SetTrigger("hpDown4");
-		anim.ResetTrigger ("hpDown4");
+		//anim.ResetTrigger ("hpDown4");
 	}
 	
 }

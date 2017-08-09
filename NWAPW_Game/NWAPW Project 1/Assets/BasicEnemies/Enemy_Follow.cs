@@ -6,7 +6,7 @@ public class Enemy_Follow : MonoBehaviour
 {
 
     //Variables involved with movement
-    Vector2 currentPositionFollow;
+    public static Vector2 currentPositionFollow;
     float axisController;
     float speed = 4.0f;
     float distanceToPlayerX;
@@ -31,6 +31,9 @@ public class Enemy_Follow : MonoBehaviour
     public Transform heartPickup;
     float dropDetermin = 0;
 	bool canDealDamage = true;
+
+    int knockbackCounter = 0;
+    bool shouldBeKnockedBack = false;
 	
     Animator follow_anim;
 	Animator anim;
@@ -149,11 +152,46 @@ public class Enemy_Follow : MonoBehaviour
 
     }
 
+    void KnockbackFromHit()
+    {
+        if (charMovementGood.PlayerPos.x > currentPositionFollow.x && (charMovementGood.PlayerPos.y - currentPositionFollow.y <= 1.5 && charMovementGood.PlayerPos.y - currentPositionFollow.y >= -2))
+        {
+            //Player to the right of the enemy
+            transform.Translate(12 * Time.deltaTime, 0, 0, Space.World);
+        }
+        else if (charMovementGood.PlayerPos.x < currentPositionFollow.x && (charMovementGood.PlayerPos.y - currentPositionFollow.y <= 1.5 && charMovementGood.PlayerPos.y - currentPositionFollow.y >= -2))
+        {
+            //Player to the left of the enemy
+            transform.Translate(-12 * Time.deltaTime, 0, 0, Space.World);
+        }
+        else if (charMovementGood.PlayerPos.y > currentPositionFollow.y && (charMovementGood.PlayerPos.x - currentPositionFollow.x <= 1.5 && charMovementGood.PlayerPos.x - currentPositionFollow.x >= -2))
+        {
+            //Player above of the enemy
+            transform.Translate(0, 12 * Time.deltaTime, 0, Space.World);
+        }
+        else if (charMovementGood.PlayerPos.x < currentPositionFollow.x && (charMovementGood.PlayerPos.x - currentPositionFollow.x <= 1.5 && charMovementGood.PlayerPos.x - currentPositionFollow.x >= -2))
+        {
+            //Player below of the enemy
+            transform.Translate(0, -12 * Time.deltaTime, 0, Space.World);
+        }
+        knockbackCounter += 1;
+        if (knockbackCounter >= 5)
+        {
+            shouldBeKnockedBack = false;
+            knockbackCounter = 0;
+        }
+    }
+
     void UpdateHealth()
     {
         if (Gloop_move.anEnemyHasTakenDamage)
         {
-            speed = -12;
+            //Knockback
+            shouldBeKnockedBack = true;
+        }
+        else if (shouldBeKnockedBack)
+        {
+            KnockbackFromHit();
         }
         else
         {
@@ -208,28 +246,28 @@ public class Enemy_Follow : MonoBehaviour
 
             RandomizeAxis();
             UpdateDirection();
-            if (ShouldMove && !Gloop_move.anEnemyHasDied)
+            if (ShouldMove && !Gloop_move.anEnemyHasDied && !shouldBeKnockedBack && !charMovementGood.playerKnockedBack)
             {
                 transform.Translate(0, -speed * Time.deltaTime, 0);
             }
 			Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
-		if (hitObjects.Length > 2 && canDealDamage)
-		{
-			hitObjects[2].SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
-            Debug.Log("Enemy has hit: " + hitObjects[2].name);
-		}
-        if (anEnemyHasDied)
-        {
-            canDealDamage = false;
-            dyingCounter += 1;
-            if(dyingCounter >= dyingDuration)
+		    if (hitObjects.Length > 2 && canDealDamage)
+		    {
+			    hitObjects[2].SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
+                //Debug.Log("Enemy has hit: " + hitObjects[2].name);
+		    }
+            if (anEnemyHasDied)
             {
-                dyingCounter = 0;
-                canDealDamage = true;
-                anEnemyHasDied = false;
+                canDealDamage = false;
+                dyingCounter += 1;
+                if(dyingCounter >= dyingDuration)
+                {
+                    dyingCounter = 0;
+                    canDealDamage = true;
+                    anEnemyHasDied = false;
+                }
             }
-        }
-            //Debug.Log("X too far: " + tooFarX + " Y too far: " + tooFarY);
+                //Debug.Log("X too far: " + tooFarX + " Y too far: " + tooFarY);
         }
     }
 	void takedamage(int damage)
@@ -239,7 +277,7 @@ public class Enemy_Follow : MonoBehaviour
         anEnemyHasTakenDamage = true;
         if (barS.Length > 1)
         {
-            Debug.Log("Sensed " + barS[1].name);
+            //Debug.Log("Sensed " + barS[1].name);
             barS[1].SendMessage("GloopDmgDwn");
         }
         if (health <= 0) 

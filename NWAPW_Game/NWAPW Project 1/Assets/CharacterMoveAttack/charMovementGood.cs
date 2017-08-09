@@ -42,6 +42,8 @@ public class charMovementGood : MonoBehaviour
     int invulCounter = 0;
     int invulDur = 60;
     public static bool playerHasPickedUpHealth = false;
+    public static bool playerKnockedBack = false;
+    int knockbackCounter = 0;
 
     // Use this for initialization
     void Start()
@@ -140,14 +142,6 @@ public class charMovementGood : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.layer == 17)
-        {
-            transform.Translate(0, 4, 0);
-        }
-    }
-
     void UpdateRooms()
     {
         if (RoomOneToTwo.playerGoingOneToTwo)
@@ -177,6 +171,36 @@ public class charMovementGood : MonoBehaviour
 
     }
 
+    void KnockbackFromHit()
+    {
+        if (PlayerPos.x > Enemy_Follow.currentPositionFollow.x && (PlayerPos.y - Enemy_Follow.currentPositionFollow.y <= 1.5 && PlayerPos.y - Enemy_Follow.currentPositionFollow.y >= -2))
+        {
+            //Player to the right of the enemy
+            transform.Translate(12 * Time.deltaTime, 0, 0, Space.World);
+        }
+        else if (PlayerPos.x < Enemy_Follow.currentPositionFollow.x && (PlayerPos.y - Enemy_Follow.currentPositionFollow.y <= 1.5 && PlayerPos.y - Enemy_Follow.currentPositionFollow.y >= -2))
+        {
+            //Player to the left of the enemy
+            transform.Translate(-12 * Time.deltaTime, 0, 0, Space.World);
+        }
+        else if (PlayerPos.y > Enemy_Follow.currentPositionFollow.y && (PlayerPos.x - Enemy_Follow.currentPositionFollow.x <= 1.5 && PlayerPos.x - Enemy_Follow.currentPositionFollow.x >= -2))
+        {
+            //Player above of the enemy
+            transform.Translate(0, 12 * Time.deltaTime, 0, Space.World);
+        }
+        else if (PlayerPos.x < Enemy_Follow.currentPositionFollow.x && (PlayerPos.x - Enemy_Follow.currentPositionFollow.x <= 1.5 && PlayerPos.x - Enemy_Follow.currentPositionFollow.x >= -2))
+        {
+            //Player below of the enemy
+            transform.Translate(0, -12 * Time.deltaTime, 0, Space.World);
+        }
+        knockbackCounter += 1;
+        if (knockbackCounter >= 5)
+        {
+            playerKnockedBack = false;
+            knockbackCounter = 0;
+        }
+    }
+
 
     void UpdatePos()
     {
@@ -189,9 +213,14 @@ public class charMovementGood : MonoBehaviour
         if (playerHasTakenDamage)
         {
             speed = -12;
+            playerKnockedBack = true;
             isStunned = true;
             playerHasTakenDamage = false;
             canTakeDamage = false;
+        }
+        else if (playerKnockedBack)
+        {
+            KnockbackFromHit();
         }
         else if (isStunned)
         {
@@ -289,7 +318,7 @@ public class charMovementGood : MonoBehaviour
 
                     if (hitObjects.Length > 0)
                     {
-                        Debug.Log("Hit " + hitObjects[0].name);
+                        //Debug.Log("Hit " + hitObjects[0].name);
                         hitObjects[0].SendMessage("takedamage", damage, SendMessageOptions.DontRequireReceiver);
                     }
 
@@ -315,7 +344,7 @@ public class charMovementGood : MonoBehaviour
             }
 
             UpdateHealth();
-            Debug.Log("An enemy has died: " + Gloop_move.anEnemyHasDied);
+            //Debug.Log("An enemy has died: " + Gloop_move.anEnemyHasDied);
 
         }
     }

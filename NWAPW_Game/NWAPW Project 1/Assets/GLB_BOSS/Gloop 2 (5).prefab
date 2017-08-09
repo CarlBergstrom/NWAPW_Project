@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 50055998308194586}
   - component: {fileID: 114348592923977228}
   - component: {fileID: 114864691938810546}
-  - component: {fileID: 114539802395776916}
   - component: {fileID: 95588320154306666}
+  - component: {fileID: 114317191353605430}
   m_Layer: 9
   m_Name: Gloop 2 (5)
   m_TagString: Enemy
@@ -214,6 +214,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fcd52287896e347962615b243ee177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114317191353605430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662293327273180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8afeca4ea8d824abac12d2760438ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  Edamage: 0
+  range: 0
+  Barsense: {fileID: 4029763885683202}
+  heartPickup: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
+    type: 2}
 --- !u!114 &114348592923977228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,17 +248,6 @@ MonoBehaviour:
   Barsense: {fileID: 4029763885683202}
   heartPickup: {fileID: 4407313113436104, guid: 02038c57d71a92148ac01d40ec75d37a,
     type: 2}
---- !u!114 &114539802395776916
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1662293327273180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa0ca4f80bb938448e74961086f9fce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114864691938810546
 MonoBehaviour:
   m_ObjectHideFlags: 1

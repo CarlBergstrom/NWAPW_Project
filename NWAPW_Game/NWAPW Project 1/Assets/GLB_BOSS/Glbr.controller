@@ -13,55 +13,61 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: battle
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: walk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: melee
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: bite
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: range
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: spit
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: die
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: roar
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: isVuln
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -127,17 +133,14 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: walk
+  - m_ConditionMode: 1
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: bite
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: spit
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: melee
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102116371602336542}
@@ -161,7 +164,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: walk
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: spit
@@ -290,10 +293,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: walk
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: melee
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: range
@@ -342,36 +342,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &1101547590797081318
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: walk
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: bite
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: spit
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1102116371602336542}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1101 &1101591865659332328
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -379,8 +349,8 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: walk
+  - m_ConditionMode: 2
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: bite
@@ -415,9 +385,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: spit
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: walk
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: bite
     m_EventTreshold: 0
@@ -442,17 +409,14 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: walk
+  - m_ConditionMode: 2
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: bite
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: spit
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: range
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102175157870807480}
@@ -475,14 +439,11 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: walk
+  - m_ConditionMode: 1
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: spit
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: range
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: bite
@@ -509,10 +470,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: walk
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: range
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: melee
@@ -551,7 +509,7 @@ AnimatorStateTransition:
     m_ConditionEvent: spit
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: walk
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: melee
@@ -577,9 +535,6 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: walk
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: melee
     m_EventTreshold: 0
@@ -610,11 +565,8 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: walk
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: melee
+  - m_ConditionMode: 2
+    m_ConditionEvent: isVuln
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: bite
@@ -703,7 +655,6 @@ AnimatorState:
   - {fileID: 1101886442023332862}
   - {fileID: 1101595865160959554}
   - {fileID: 1101374290333900134}
-  - {fileID: 1101547590797081318}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0

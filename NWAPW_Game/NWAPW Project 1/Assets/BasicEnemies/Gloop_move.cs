@@ -46,7 +46,7 @@ public class Gloop_move : MonoBehaviour {
 		if (hitObjects.Length > 2 && canDealDamage)
 		{
 			hitObjects[2].SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
-            Debug.Log("Enemy has hit: " + hitObjects[2].name);
+            //Debug.Log("Enemy has hit: " + hitObjects[2].name);
 		}
         if (anEnemyHasDied)
         {
@@ -68,7 +68,7 @@ public class Gloop_move : MonoBehaviour {
         anEnemyHasTakenDamage = true;
         if (barS.Length > 1)
         {
-            Debug.Log("Sensed " + barS[1].name);
+            //Debug.Log("Sensed " + barS[1].name);
             barS[1].SendMessage("GloopDmgDwn");
         }
         if (health <= 0) 
