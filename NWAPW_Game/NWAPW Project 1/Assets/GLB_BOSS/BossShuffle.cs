@@ -36,8 +36,13 @@ public class BossShuffle : MonoBehaviour {
     int vulnTimer = 180;
     bool isVuln = false;
 
+    bool shouldSpawnBridge = true;
+
     public GameObject Player;
     public GameObject BossHpBar;
+
+    public Transform Bridge;
+    Vector3 BridgeSpawnLocation;
 
 
     public Transform GlbrProjectile;
@@ -46,15 +51,26 @@ public class BossShuffle : MonoBehaviour {
 
     public Animator anim;
 
-	// Use this for initialization
-	void Start () {
+
+    private void OnApplicationQuit()
+    {
+        shouldSpawnBridge = false;
+    }
+
+    // Use this for initialization
+    void Start () {
         Physics2D.IgnoreLayerCollision(17, 18, true);
-	}
+        BridgeSpawnLocation[0] = 150;
+        BridgeSpawnLocation[1] = 39;
+        BridgeSpawnLocation[2] = -1;
+    }
 
     private void OnDestroy()
     {
         CameraRoomFollow.isInBossRoom = false;
         ActivateBoss.isAtBoss = false;
+        Instantiate(Bridge, BridgeSpawnLocation, Quaternion.identity);
+        BossHasDied = true;
     }
 
     // Update is called once per frame
@@ -87,11 +103,13 @@ public class BossShuffle : MonoBehaviour {
             fightStarted = false;
             //Boss has died
 
-            //Animation triggers here
+            anim.SetBool("walk", false);
+            anim.SetBool("spit", false);
+            anim.SetBool("isVuln", false);
+            anim.SetBool("bite", false);
+            anim.SetBool("die", true);
 
             Destroy(gameObject, 3.5f);
-
-            //Spawn bridge here
         }
 
         if (fightStarted)
@@ -154,6 +172,7 @@ public class BossShuffle : MonoBehaviour {
             isBiting = false;
             isVuln = true;
             anim.SetBool("walk", false);
+			anim.SetBool ("isVuln", true);
         }
         else if (shouldChooseAction)
         {
@@ -166,6 +185,10 @@ public class BossShuffle : MonoBehaviour {
                     if (!hasProjectiled)
                     {
                         anim.SetBool("walk", false);
+						anim.SetBool ("spit", true);
+						anim.SetTrigger ("range");
+						anim.SetBool ("isVuln", false);
+						anim.SetBool ("bite", false);
                         attackCounter += 1;
                         isProjectiling = true;
                         isBiting = false;
@@ -175,6 +198,9 @@ public class BossShuffle : MonoBehaviour {
                     else
                     {
                         anim.SetBool("walk", true);
+						anim.SetBool ("spit", false);
+						anim.SetBool ("isVuln", false);
+						anim.SetBool ("bite", false);
                         isWalking = true;
                         isBiting = false;
                         isProjectiling = false;
@@ -187,6 +213,10 @@ public class BossShuffle : MonoBehaviour {
                     if (!hasBitten)
                     {
                         anim.SetBool("walk", false);
+						anim.SetBool ("spit", false);
+						anim.SetTrigger ("melee");
+						anim.SetBool ("isVuln", false);
+						anim.SetBool ("bite", true);
                         attackCounter += 1;
                         isBiting = true;
                         isProjectiling = false;
@@ -196,6 +226,9 @@ public class BossShuffle : MonoBehaviour {
                     else
                     {
                         anim.SetBool("walk", true);
+						anim.SetBool ("spit", false);
+						anim.SetBool ("isVuln", false);
+						anim.SetBool ("bite", false);
                         isWalking = true;
                         isBiting = false;
                         isProjectiling = false;
@@ -208,6 +241,10 @@ public class BossShuffle : MonoBehaviour {
                     if (!hasProjectiled)
                     {
                         anim.SetBool("walk", false);
+						anim.SetBool ("spit", true);
+						anim.SetTrigger ("range");
+						anim.SetBool ("isVuln", false);
+						anim.SetBool ("bite", false);
                         attackCounter += 1;
                         isProjectiling = true;
                         isBiting = false;
@@ -217,6 +254,9 @@ public class BossShuffle : MonoBehaviour {
                     else
                     {
                         anim.SetBool("walk", true);
+						anim.SetBool ("spit", false);
+						anim.SetBool ("isVuln", false);
+						anim.SetBool ("bite", false);
                         isWalking = true;
                         isBiting = false;
                         isProjectiling = false;
@@ -227,6 +267,9 @@ public class BossShuffle : MonoBehaviour {
                 {
                     //Walk, do nothing
                     anim.SetBool("walk", true);
+					anim.SetBool ("spit", false);
+					anim.SetBool ("isVuln", false);
+					anim.SetBool ("bite", false);
                     isWalking = true;
                     isBiting = false;
                     isProjectiling = false;
@@ -239,6 +282,9 @@ public class BossShuffle : MonoBehaviour {
                 {
                     //Walk, do nothing
                     anim.SetBool("walk", true);
+					anim.SetBool ("spit", false);
+					anim.SetBool ("isVuln", false);
+					anim.SetBool ("bite", false);
                     isWalking = true;
                     isBiting = false;
                     isProjectiling = false;
@@ -249,6 +295,10 @@ public class BossShuffle : MonoBehaviour {
                     if (!hasProjectiled)
                     {
                         anim.SetBool("walk", false);
+						anim.SetBool ("spit", true);
+						anim.SetTrigger ("range");
+						anim.SetBool ("isVuln", false);
+						anim.SetBool ("bite", false);
                         attackCounter += 1;
                         isProjectiling = true;
                         isBiting = false;
@@ -258,6 +308,9 @@ public class BossShuffle : MonoBehaviour {
                     else
                     {
                         anim.SetBool("walk", true);
+						anim.SetBool ("spit", false);
+						anim.SetBool ("isVuln", false);
+						anim.SetBool ("bite", false);
                         isWalking = true;
                         isBiting = false;
                         isProjectiling = false;
@@ -322,6 +375,7 @@ public class BossShuffle : MonoBehaviour {
             else if (actionCounter > 30 && actionCounter <= 60)
             {
                 transform.Translate(0, 10 * Time.deltaTime, 0);
+				anim.SetBool ("bite", false);
             }
             else
             {

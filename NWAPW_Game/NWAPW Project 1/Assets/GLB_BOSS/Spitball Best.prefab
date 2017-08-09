@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818145478418388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 150.42, y: 8.08, z: -1}
+  m_LocalPosition: {x: 151.6, y: -2.3, z: -1}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children:
   - {fileID: 4185273492115388}
@@ -119,7 +119,8 @@ MonoBehaviour:
     type: 2}
   slimeGlobPrefab: {fileID: 4323905879744324, guid: 068839b668a93eb4db8d8a427be9319a,
     type: 2}
-  Player: {fileID: 0}
+  playeer: {fileID: 0}
+  Edamage: 3
 --- !u!212 &212540397336514332
 SpriteRenderer:
   m_ObjectHideFlags: 1
