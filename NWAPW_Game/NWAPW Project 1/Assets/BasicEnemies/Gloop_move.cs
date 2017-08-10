@@ -14,7 +14,7 @@ public class Gloop_move : MonoBehaviour {
     float dropDetermin = 0;
 
 
-    bool canDealDamage = true;
+    public static bool canDealDamage = true;
 
 	Animator anim;
 
@@ -22,8 +22,7 @@ public class Gloop_move : MonoBehaviour {
     int enemyHealth = 2;
     public static bool anEnemyHasDied;
     public static bool anEnemyHasTakenDamage = false;
-    int dyingCounter = 0;
-    int dyingDuration = 100;
+    bool shouldDrop = true;
 
 
     // Use this for initialization
@@ -38,10 +37,15 @@ public class Gloop_move : MonoBehaviour {
             enemyHealth -= 1;
         }
     }
-		
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnApplicationQuit()
+    {
+        shouldDrop = false;
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 		Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
 		if (hitObjects.Length > 2 && canDealDamage)
 		{
@@ -51,17 +55,21 @@ public class Gloop_move : MonoBehaviour {
         if (anEnemyHasDied)
         {
             canDealDamage = false;
-            dyingCounter += 1;
-            if(dyingCounter >= dyingDuration)
-            {
-                dyingCounter = 0;
-                canDealDamage = true;
-                anEnemyHasDied = false;
-            }
+        }
+        //Debug.Log("Enemy can deal damage: " + canDealDamage);
+    }
+
+    private void OnDestroy()
+    {
+        canDealDamage = true;
+        anEnemyHasDied = false;
+        if (shouldDrop)
+        {
+            Instantiate(heartPickup, transform.position, transform.rotation);
         }
     }
 
-	void takedamage(int damage)
+    void takedamage(int damage)
 	{
 		health -= damage;
         Collider2D[] barS = Physics2D.OverlapCircleAll(Barsense.position, 0.25f);
@@ -76,7 +84,6 @@ public class Gloop_move : MonoBehaviour {
             dropDetermin = Random.Range(-1, 1);
             anEnemyHasDied = true;
 			anim.SetTrigger ("die");
-            Instantiate(heartPickup, transform.position, transform.rotation);
 			Destroy (gameObject, 1.7f);
 		}
 	}

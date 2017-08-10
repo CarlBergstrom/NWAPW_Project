@@ -69,7 +69,10 @@ public class BossShuffle : MonoBehaviour {
     {
         CameraRoomFollow.isInBossRoom = false;
         ActivateBoss.isAtBoss = false;
-        Instantiate(Bridge, BridgeSpawnLocation, Quaternion.identity);
+        if (shouldSpawnBridge)
+        {
+            Instantiate(Bridge, BridgeSpawnLocation, Quaternion.identity);
+        }
         BossHasDied = true;
     }
 
@@ -149,14 +152,7 @@ public class BossShuffle : MonoBehaviour {
     {
         if (collision.gameObject.layer == 8)
         {
-            if (!isBiting)
-            {
-                Player.SendMessage("takedamageP", 2);
-            }
-            else
-            {
-                Player.SendMessage("takedamageP", 4);
-            }
+                Player.SendMessage("takedamageP", 1);
         }
     }
 

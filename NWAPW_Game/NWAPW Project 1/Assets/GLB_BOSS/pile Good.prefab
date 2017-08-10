@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Edamage: 4
   range: 1
-  Player: {fileID: 1925766442853518, guid: e991f5dd20e0e544ca1ddf1f8d7ec94b, type: 2}
+  Player: {fileID: 1925766442853518, guid: 9b326cc92409ab741a6ce503eeda21bb, type: 2}
 --- !u!212 &212484993784980134
 SpriteRenderer:
   m_ObjectHideFlags: 1

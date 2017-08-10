@@ -8,6 +8,7 @@ public class BossProjectileAction : MonoBehaviour {
     public Transform bossSpawnPrefab;
     public Transform slimeGlobPrefab;
 	public GameObject Player;
+	public static bool spitDmg = false;
 
 	// Update is called once per frame
 	void Update () {
@@ -32,14 +33,28 @@ public class BossProjectileAction : MonoBehaviour {
 	{
 		if (coll.gameObject.layer == 8)
 		{
-			Player.SendMessage ("takedamageP", 4);
+			if (charMovementGood.canTakeDamage) 
+			{
+				spitDmg = true;
+			} 
+			else 
+			{
+				spitDmg = false;
+			}		
 		}
 	}
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.layer == 8)
         {
-            Player.SendMessage("takedamageP", 4);
+			if (charMovementGood.canTakeDamage) 
+			{
+				spitDmg = true;
+			} 
+			else 
+			{
+				spitDmg = false;
+			}
         }
     }
 }

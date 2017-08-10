@@ -270,23 +270,4 @@ public class Enemy_Follow : MonoBehaviour
                 //Debug.Log("X too far: " + tooFarX + " Y too far: " + tooFarY);
         }
     }
-	void takedamage(int damage)
-	{
-		health -= damage;
-        Collider2D[] barS = Physics2D.OverlapCircleAll(Barsense.position, 0.25f);
-        anEnemyHasTakenDamage = true;
-        if (barS.Length > 1)
-        {
-            //Debug.Log("Sensed " + barS[1].name);
-            barS[1].SendMessage("GloopDmgDwn");
-        }
-        if (health <= 0) 
-		{
-            dropDetermin = Random.Range(-1, 1);
-            anEnemyHasDied = true;
-			anim.SetTrigger ("die");
-            Instantiate(heartPickup, transform.position, transform.rotation);
-			Destroy (gameObject, 1.7f);
-		}
-	}
 }

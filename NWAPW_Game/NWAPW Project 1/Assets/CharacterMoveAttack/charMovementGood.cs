@@ -212,7 +212,6 @@ public class charMovementGood : MonoBehaviour
     {
         if (playerHasTakenDamage)
         {
-            speed = -12;
             playerKnockedBack = true;
             isStunned = true;
             playerHasTakenDamage = false;
@@ -255,6 +254,7 @@ public class charMovementGood : MonoBehaviour
             {
                 playerHealth = 10;
             }
+            playerHasPickedUpHealth = false;
         }
     }
 
@@ -338,13 +338,34 @@ public class charMovementGood : MonoBehaviour
 				
 			}
 
-            if (!Input.GetButton("stab"))
-            {
-                anim.SetBool("stab", false);
-            }
+        if (!Input.GetButton("stab"))
+		{
+			anim.SetBool("stab", false);
+		}
 
+		// Sense spitball and damage self
+		if (BossProjectileAction.spitDmg) 
+		{
+			takedamageP (4);
+			// count up for invul time
+			invulCounter += 1;
+			if (invulCounter >= invulDur)
+			{
+				BossProjectileAction.spitDmg = false;
+			}
+		}
+		// Sense spit pile and damage self
+		if (spt_pile.pileDmg) 
+		{
+			takedamageP (4);
+			// count up for invul time
+			invulCounter += 1;
+			if (invulCounter >= invulDur)
+			{
+				spt_pile.pileDmg = false;
+			}
+		}
+		Debug.Log ("HP is at " + playerHealth + " And enemies dealing damage is: " + Gloop_move.canDealDamage);
             UpdateHealth();
-            //Debug.Log("An enemy has died: " + Gloop_move.anEnemyHasDied);
-
         }
     }

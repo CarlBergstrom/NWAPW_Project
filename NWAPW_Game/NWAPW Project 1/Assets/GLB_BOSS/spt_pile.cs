@@ -7,6 +7,7 @@ public class spt_pile : MonoBehaviour {
 	public int Edamage;
 	public float range;
 	public GameObject Player;
+	public static bool pileDmg;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,8 +18,14 @@ public class spt_pile : MonoBehaviour {
 		// not biting
 		if(collision.gameObject.layer == 8)
 		{
-			Player.SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
-		}
+			if (charMovementGood.canTakeDamage) 
+			{
+				pileDmg = true;
+			} 
+			else 
+			{
+				pileDmg = false;
+			}		}
 	}
 
 
@@ -27,8 +34,15 @@ public class spt_pile : MonoBehaviour {
         // not biting
         if (collision.gameObject.layer == 8)
         {
-            Player.SendMessage("takedamageP", Edamage, SendMessageOptions.DontRequireReceiver);
-        }
+			if (charMovementGood.canTakeDamage) 
+			{
+				pileDmg = true;
+			} 
+			else 
+			{
+				pileDmg = false;
+			}        
+		}
     }
     void Update ()
 	{
