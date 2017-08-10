@@ -3074,11 +3074,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4615114810150618, guid: 9b326cc92409ab741a6ce503eeda21bb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 123.07
+      value: 123.5
       objectReference: {fileID: 0}
     - target: {fileID: 4615114810150618, guid: 9b326cc92409ab741a6ce503eeda21bb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 98.32
+      value: 97.6
       objectReference: {fileID: 0}
     - target: {fileID: 4615114810150618, guid: 9b326cc92409ab741a6ce503eeda21bb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6002,8 +6002,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1340597669}
-  - component: {fileID: 1340597668}
   - component: {fileID: 1340597667}
+  - component: {fileID: 1340597668}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -6022,8 +6022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd74427810975249ace06d20b60943e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!68 &1340597668
-EdgeCollider2D:
+--- !u!61 &1340597668
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -6034,11 +6034,19 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 6.3058624, y: 3.7325287}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 21.077972, y: 9.476257}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -10.156937, y: -0.8673897}
-  - {x: 20.912567, y: -0.6360855}
 --- !u!4 &1340597669
 Transform:
   m_ObjectHideFlags: 0
