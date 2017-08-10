@@ -30,7 +30,7 @@ public class BossShuffle : MonoBehaviour {
     public int Bdamage = 2;
     public float range = 10;
 
-    int actionTimer = 180;
+    int actionTimer = 120;
     int actionCounter = 0;
     int vulnCounter = 0;
     int vulnTimer = 180;
@@ -203,7 +203,7 @@ public class BossShuffle : MonoBehaviour {
                         shouldChooseAction = false;
                     }
                 }
-                else if (attackController > 1.0 && attackController <= 2.0)
+                else if (attackController > 1.0 && attackController <= 3.0)
                 {
                     //Bite
                     if (!hasBitten)
@@ -231,7 +231,7 @@ public class BossShuffle : MonoBehaviour {
                         shouldChooseAction = false;
                     }
                 }
-                else if (attackController > 2.0 && attackController <= 3.0)
+                else if (attackController > 3.0 && attackController <= 4.0)
                 {
                     //Spawn Enemy if no existing spawned enemies exist
                     if (!hasProjectiled)
@@ -259,7 +259,7 @@ public class BossShuffle : MonoBehaviour {
                         shouldChooseAction = false;
                     }
                 }
-                else if (attackController > 3.0 && attackController <= 5.0)
+                else if (attackController > 4.0 && attackController <= 5.0)
                 {
                     //Walk, do nothing
                     anim.SetBool("walk", true);
@@ -274,7 +274,7 @@ public class BossShuffle : MonoBehaviour {
             }
             else
             {
-                if(attackController > 0.0 && attackController <= 3.0)
+                if(attackController > 0.0 && attackController <= 1.5)
                 {
                     //Walk, do nothing
                     anim.SetBool("walk", true);
@@ -286,7 +286,7 @@ public class BossShuffle : MonoBehaviour {
                     isProjectiling = false;
                     shouldChooseAction = false;
                 }
-                else if(attackController > 3.0 && attackController <= 5.0)
+                else if(attackController > 1.5 && attackController <= 5.0)
                 {
                     if (!hasProjectiled)
                     {

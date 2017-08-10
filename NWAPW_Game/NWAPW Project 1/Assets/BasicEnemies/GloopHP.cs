@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GloopHPScript : MonoBehaviour {
+public class GloopHP : MonoBehaviour {
 	Animator anim;
 
 	// Use this for initialization
@@ -11,13 +11,20 @@ public class GloopHPScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void GloopDmgDwn()
+	{
+		if (Gloop_move.health == 2)
+		{
+			anim.SetTrigger ("Ehp2");
+		}
+		if (Gloop_move.health == 1)
+		{
+			anim.SetTrigger ("Ehp1");
+		}
+		if (Gloop_move.health == 0)
+		{
+			anim.SetTrigger ("Ehp0");
+		}
 	}
 
-	void GloopDmgDwn ()
-	{
-        Debug.Log("Recieved message");
-		anim.SetTrigger ("Damage");
-	}
 }

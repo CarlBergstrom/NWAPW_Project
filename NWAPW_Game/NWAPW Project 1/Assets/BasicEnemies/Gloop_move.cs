@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gloop_move : MonoBehaviour {
 
     //Variables involved with movement
-	public int health;
+	public static int health;
 	public int Edamage;
 	public float range;
     bool shouldTurn = true;
@@ -13,16 +13,19 @@ public class Gloop_move : MonoBehaviour {
     public Transform heartPickup;
     float dropDetermin = 0;
 
+    bool shouldDrop = true;
+
 
     public static bool canDealDamage = true;
 
 	Animator anim;
 
     //Variables involved in health
-    int enemyHealth = 2;
+    public static int enemyHealth = 2;
     public static bool anEnemyHasDied;
     public static bool anEnemyHasTakenDamage = false;
-    bool shouldDrop = true;
+    int dyingCounter = 0;
+    int dyingDuration = 100;
 
 
     // Use this for initialization
@@ -55,8 +58,14 @@ public class Gloop_move : MonoBehaviour {
         if (anEnemyHasDied)
         {
             canDealDamage = false;
+            dyingCounter += 1;
+            if(dyingCounter >= dyingDuration)
+            {
+                dyingCounter = 0;
+                canDealDamage = true;
+                anEnemyHasDied = false;
+            }
         }
-        //Debug.Log("Enemy can deal damage: " + canDealDamage);
     }
 
     private void OnDestroy()
@@ -85,6 +94,8 @@ public class Gloop_move : MonoBehaviour {
             anEnemyHasDied = true;
 			anim.SetTrigger ("die");
 			Destroy (gameObject, 1.7f);
+            health = 1;
+            health = 2;
 		}
 	}
 		
