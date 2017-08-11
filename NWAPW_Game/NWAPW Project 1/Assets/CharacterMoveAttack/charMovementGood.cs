@@ -188,7 +188,7 @@ public class charMovementGood : MonoBehaviour
             //Player above of the enemy
             transform.Translate(0, 12 * Time.deltaTime, 0, Space.World);
         }
-        else if (PlayerPos.x < Enemy_Follow.currentPositionFollow.x && (PlayerPos.x - Enemy_Follow.currentPositionFollow.x <= 1.5 && PlayerPos.x - Enemy_Follow.currentPositionFollow.x >= -2))
+        else if (PlayerPos.x < Enemy_Follow.currentPositionFollow.y && (PlayerPos.x - Enemy_Follow.currentPositionFollow.x <= 1.5 && PlayerPos.x - Enemy_Follow.currentPositionFollow.x >= -2))
         {
             //Player below of the enemy
             transform.Translate(0, -12 * Time.deltaTime, 0, Space.World);
@@ -210,16 +210,17 @@ public class charMovementGood : MonoBehaviour
 
     void UpdateHealth()
     {
+        // Sense spit pile and damage self
+        if (spt_pile.pileDmg)
+        {
+            playerHasTakenDamage = true;
+            spt_pile.pileDmg = false;
+        }
         if (playerHasTakenDamage)
         {
-            playerKnockedBack = true;
             isStunned = true;
             playerHasTakenDamage = false;
             canTakeDamage = false;
-        }
-        else if (playerKnockedBack)
-        {
-            KnockbackFromHit();
         }
         else if (isStunned)
         {
@@ -347,24 +348,16 @@ public class charMovementGood : MonoBehaviour
 		if (BossProjectileAction.spitDmg) 
 		{
 			takedamageP (4);
+            canTakeDamage = false;
 			// count up for invul time
 			invulCounter += 1;
 			if (invulCounter >= invulDur)
 			{
 				BossProjectileAction.spitDmg = false;
+                canTakeDamage = true;
 			}
 		}
-		// Sense spit pile and damage self
-		if (spt_pile.pileDmg) 
-		{
-			takedamageP (4);
-			// count up for invul time
-			invulCounter += 1;
-			if (invulCounter >= invulDur)
-			{
-				spt_pile.pileDmg = false;
-			}
-		}
+
 		Debug.Log ("HP is at " + playerHealth + " And enemies dealing damage is: " + Gloop_move.canDealDamage);
             UpdateHealth();
         }

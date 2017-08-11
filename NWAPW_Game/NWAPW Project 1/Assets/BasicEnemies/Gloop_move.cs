@@ -9,7 +9,7 @@ public class Gloop_move : MonoBehaviour {
 	public int Edamage;
 	public float range;
     bool shouldTurn = true;
-    public Transform Barsense;
+    //public Transform Barsense;
     public Transform heartPickup;
     float dropDetermin = 0;
 
@@ -81,13 +81,7 @@ public class Gloop_move : MonoBehaviour {
     void takedamage(int damage)
 	{
 		health -= damage;
-        Collider2D[] barS = Physics2D.OverlapCircleAll(Barsense.position, 0.25f);
         anEnemyHasTakenDamage = true;
-        if (barS.Length > 1)
-        {
-            //Debug.Log("Sensed " + barS[1].name);
-            barS[1].SendMessage("GloopDmgDwn");
-        }
         if (health <= 0) 
 		{
             dropDetermin = Random.Range(-1, 1);

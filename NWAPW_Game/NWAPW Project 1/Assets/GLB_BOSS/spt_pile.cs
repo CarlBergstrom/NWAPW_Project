@@ -25,25 +25,10 @@ public class spt_pile : MonoBehaviour {
 			else 
 			{
 				pileDmg = false;
-			}		}
+			}
+        }
 	}
 
-
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        // not biting
-        if (collision.gameObject.layer == 8)
-        {
-			if (charMovementGood.canTakeDamage) 
-			{
-				pileDmg = true;
-			} 
-			else 
-			{
-				pileDmg = false;
-			}        
-		}
-    }
     void Update ()
 	{
 		Destroy(gameObject, 2f);
