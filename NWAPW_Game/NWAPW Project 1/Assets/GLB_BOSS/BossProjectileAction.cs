@@ -43,18 +43,4 @@ public class BossProjectileAction : MonoBehaviour {
 			}		
 		}
 	}
-    void OnTriggerStay2D(Collider2D coll)
-    {
-        if (coll.gameObject.layer == 8)
-        {
-			if (charMovementGood.canTakeDamage) 
-			{
-				spitDmg = true;
-			} 
-			else 
-			{
-				spitDmg = false;
-			}
-        }
-    }
 }

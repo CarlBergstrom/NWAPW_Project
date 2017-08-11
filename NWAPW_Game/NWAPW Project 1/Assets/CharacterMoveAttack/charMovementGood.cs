@@ -213,8 +213,15 @@ public class charMovementGood : MonoBehaviour
         // Sense spit pile and damage self
         if (spt_pile.pileDmg)
         {
+            takedamageP(4);
             playerHasTakenDamage = true;
             spt_pile.pileDmg = false;
+        }
+        else if (BossProjectileAction.spitDmg)
+        {
+            takedamageP(4);
+            playerHasTakenDamage = true;
+            BossProjectileAction.spitDmg = false;
         }
         if (playerHasTakenDamage)
         {
@@ -340,23 +347,10 @@ public class charMovementGood : MonoBehaviour
 			}
 
         if (!Input.GetButton("stab"))
-		{
-			anim.SetBool("stab", false);
-		}
+        {
+            anim.SetBool("stab", false);
+        }
 
-		// Sense spitball and damage self
-		if (BossProjectileAction.spitDmg) 
-		{
-			takedamageP (4);
-            canTakeDamage = false;
-			// count up for invul time
-			invulCounter += 1;
-			if (invulCounter >= invulDur)
-			{
-				BossProjectileAction.spitDmg = false;
-                canTakeDamage = true;
-			}
-		}
 
 		Debug.Log ("HP is at " + playerHealth + " And enemies dealing damage is: " + Gloop_move.canDealDamage);
             UpdateHealth();
